@@ -1,6 +1,35 @@
-<header>
-  <div class='container mx-auto mt-40 text-center font-semibold'>
+<header class='flex items-center justify-center relative'>
+  <div id='grainedContainer'></div>
+  <div class='absolute container text-center font-semibold'>
     <p class='text-2xl pb-4'><span>👋</span> Hi, my name is Rokas</p>
-    <h1 class='text-9xl'>I'm self thaught web developer that creates full-stack web apps</h1>
+    <h1 class='text-9xl'>I'm self-taught web developer that creates full-stack web apps</h1>
   </div>
+  <div id='gradient' class='h-16 w-full absolute bottom-0'></div>
 </header>
+
+<script>
+  import grained from "../lib/grained";
+  var options = {
+    animate: true,
+    patternWidth: 100,
+    patternHeight: 100,
+    grainOpacity: 0.13,
+    grainDensity: 1,
+    grainWidth: 1,
+    grainHeight: 1,
+  };
+
+  grained("#grainedContainer", options);
+</script>
+
+<style>
+  #grainedContainer {
+    width: 100vw;
+    height: 105vh;
+    /* background-image: radial-gradient(circle, #f6eb0e, #ffde64, #ffdaa1, #ffe3d3, #f8f2f2); */
+    background: radial-gradient(at center top, #1900ffa6, #f8f2f2);
+  }
+  #gradient {
+    background: linear-gradient(to top, rgba(248, 242, 242, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+</style>
