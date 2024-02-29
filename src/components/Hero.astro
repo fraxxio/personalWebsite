@@ -1,11 +1,12 @@
-<header class='flex items-center justify-center relative'>
+<header class='flex justify-center relative' id='headerContainer'>
   <div id='grainedContainer'></div>
-  <div class='absolute container text-center font-semibold'>
-    <p class='text-2xl pb-4 max-md:text-xl max-sm:text-lg'>
+  <div id='cursor-glow'></div>
+  <div class='absolute container text-center font-semibold pt-[15rem]'>
+    <p class='text-2xl pb-4 z-0 max-md:text-xl max-sm:text-lg'>
       <span>👋</span> Hi, my name is Rokas
     </p>
     <h1
-      class='text-9xl max-lg:text-8xl max-md:text-7xl max-sm:text-6xl max-[550px]:text-5xl max-[380px]:text-3xl'
+      class='text-9xl max-lg:text-8xl max-md:text-7xl max-sm:text-6xl max-[550px]:text-5xl max-[380px]:text-3xl z-0'
     >
       I'm self-taught web developer that creates full-stack web apps
     </h1>
@@ -26,16 +27,46 @@
   };
 
   grained("#grainedContainer", options);
+
+  const cursor = document.getElementById("cursor-glow") as HTMLElement;
+  const header = document.getElementById("headerContainer") as HTMLElement;
+
+  header.addEventListener("mousemove", (event) => {
+    let x = event.clientX - cursor.offsetWidth / 2;
+    let y = event.clientY - cursor.offsetHeight / 2;
+    const keyframes = {
+      transform: `translate(${x}px, ${y}px)`,
+    };
+    cursor.animate(keyframes, {
+      duration: 800,
+      fill: "forwards",
+    });
+
+    let red = Math.round((x / header.offsetWidth) * 255);
+    let green = Math.round((y / header.offsetHeight) * 255);
+    let blue = 100;
+    let color = `rgba(${red}, ${green}, ${blue}, 0.5`;
+    cursor.style.background = `radial-gradient(circle, rgb(${red}, ${green}, ${blue}) 0%, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0) 100%)`;
+  });
 </script>
 
 <style>
   #grainedContainer {
     width: 100vw;
     height: 105vh;
-    /* background-image: radial-gradient(circle, #f6eb0e, #ffde64, #ffdaa1, #ffe3d3, #f8f2f2); */
     background: radial-gradient(at center top, #1900ffa6, #f8f2f2);
+    z-index: -1;
   }
   #gradient {
     background: linear-gradient(to top, rgba(248, 242, 242, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+  #cursor-glow {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, --cursorColor 0%, rgba(255, 255, 255, 0) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>
