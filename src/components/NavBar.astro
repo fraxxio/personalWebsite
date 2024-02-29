@@ -1,10 +1,52 @@
-<nav class='border-b-2 border-black backdrop-blur-md fixed top-0 left-0 w-full z-10'>
-  <div class='flex items-center justify-between container mx-auto p-3 rounded-3xl'>
-    <a href='/' class='font-semibold text-2xl'>{`< dev.Rokas />`}</a>
-    <ul class='flex gap-4 font-semibold text-lg'>
-      <li><a href='#projects'>Projects</a></li>
-      <li><a href='#aboutme'>About Me</a></li>
-      <li><a href='#contacts'>Contacts</a></li>
-    </ul>
-  </div>
+<nav
+  class='border border-opacity-30 border-black backdrop-blur-md fixed right-[50%] translate-x-[50%] top-3 rounded-3xl z-10 flex items-center justify-between p-3 px-4 container'
+>
+  <a href='/' class='font-semibold text-2xl max-[520px]:text-xl'>{`< dev.Rokas />`}</a>
+  <ul class='flex gap-4 font-semibold text-lg max-[520px]:hidden'>
+    <li><a href='#projects'>Projects</a></li>
+    <li><a href='#aboutme'>About Me</a></li>
+    <li><a href='#contacts'>Contacts</a></li>
+  </ul>
+  <button class='min-[520px]:hidden cursor-pointer' id='navBtn'>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='28'
+      height='28'
+      viewBox='0 0 28 28'
+      fill='none'
+      stroke='black'
+      stroke-width='2.5'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      ><line x1='3' x2='21' y1='6' y2='6'></line><line x1='3' x2='21' y1='12' y2='12'></line><line
+        x1='3'
+        x2='21'
+        y1='18'
+        y2='18'></line></svg
+    ></button
+  >
 </nav>
+<ul
+  class='flex gap-4 font-semibold text-lg min-[520px]:hidden fixed flex-col right-[50%] translate-x-[50%] border border-opacity-30 border-black rounded-3xl z-10 p-4 backdrop-blur-md w-fit text-center top-[-10rem] duration-300'
+  id='navBar'
+>
+  <li><a href='#projects'>Projects</a></li>
+  <li><a href='#aboutme'>About Me</a></li>
+  <li><a href='#contacts'>Contacts</a></li>
+</ul>
+
+<script>
+  const btn = document.getElementById("navBtn") as HTMLElement;
+  const NavBar = document.getElementById("navBar") as HTMLElement;
+  let isOpen = false;
+
+  btn.addEventListener("click", () => {
+    if (isOpen) {
+      NavBar.classList.replace("top-[5rem]", "top-[-10rem]");
+      isOpen = false;
+    } else {
+      NavBar.classList.replace("top-[-10rem]", "top-[5rem]");
+      isOpen = true;
+    }
+  });
+</script>
