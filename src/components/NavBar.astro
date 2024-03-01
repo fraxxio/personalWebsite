@@ -27,7 +27,7 @@
   >
 </nav>
 <ul
-  class='flex gap-4 font-semibold text-lg min-[520px]:hidden fixed flex-col right-[50%] translate-x-[50%] border border-opacity-30 border-black rounded-3xl z-[1] p-4 backdrop-blur-md w-[50%] text-center top-[-10rem] duration-300'
+  class='flex gap-4 font-semibold text-lg min-[520px]:hidden fixed flex-col right-[50%] translate-x-[50%] border border-opacity-30 border-black rounded-3xl z-[1] p-4 backdrop-blur-md w-[50%] text-center top-[-11rem] duration-300'
   id='navBar'
 >
   <li><a href='#projects'>Projects</a></li>
@@ -42,10 +42,10 @@
 
   btn.addEventListener("click", () => {
     if (isOpen) {
-      NavBar.classList.replace("top-[5rem]", "top-[-10rem]");
+      NavBar.classList.replace("top-[5rem]", "top-[-11rem]");
       isOpen = false;
     } else {
-      NavBar.classList.replace("top-[-10rem]", "top-[5rem]");
+      NavBar.classList.replace("top-[-11rem]", "top-[5rem]");
       isOpen = true;
     }
   });

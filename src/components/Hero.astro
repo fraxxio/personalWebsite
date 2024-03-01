@@ -1,9 +1,13 @@
-<header class='flex justify-center relative' id='headerContainer'>
+<header class='flex justify-center relative overflow-hidden' id='headerContainer'>
   <div id='grainedContainer'></div>
-  <div id='cursor-glow'></div>
+  <div id='cursor-glow' class='max-[520px]:hidden cursor-glow'></div>
+  <div id='cursor-glow2' class='max-[520px]:hidden cursor-glow'></div>
+  <div id='cursor-glow3' class='max-[520px]:hidden cursor-glow'></div>
+  <div id='cursor-glow4' class='max-[520px]:hidden cursor-glow'></div>
   <div class='absolute container text-center font-semibold pt-[15rem]'>
-    <p class='text-2xl pb-4 z-0 max-md:text-xl max-sm:text-lg'>
-      <span>👋</span> Hi, my name is Rokas
+    <p class='flex justify-center text-2xl pb-4 z-0 gap-2 max-md:text-xl max-sm:text-lg'>
+      <span id='hand' class='animate-waving-hand cursor-pointer relative'>👋 </span>Hi, my name is
+      Rokas
     </p>
     <h1
       class='text-9xl max-lg:text-8xl max-md:text-7xl max-sm:text-6xl max-[550px]:text-5xl max-[380px]:text-3xl z-0'
@@ -28,25 +32,42 @@
 
   grained("#grainedContainer", options);
 
-  const cursor = document.getElementById("cursor-glow") as HTMLElement;
   const header = document.getElementById("headerContainer") as HTMLElement;
+  const cursor = document.getElementById("cursor-glow") as HTMLElement;
+  const cursor2 = document.getElementById("cursor-glow2") as HTMLElement;
+  const cursor3 = document.getElementById("cursor-glow3") as HTMLElement;
+  const cursor4 = document.getElementById("cursor-glow4") as HTMLElement;
 
   header.addEventListener("mousemove", (event) => {
-    let x = event.clientX - cursor.offsetWidth / 2;
-    let y = event.clientY - cursor.offsetHeight / 2;
-    const keyframes = {
-      transform: `translate(${x}px, ${y}px)`,
-    };
-    cursor.animate(keyframes, {
-      duration: 800,
-      fill: "forwards",
-    });
+    const cursors = [cursor, cursor2, cursor3, cursor4];
 
-    let red = Math.round((x / header.offsetWidth) * 255);
-    let green = Math.round((y / header.offsetHeight) * 255);
-    let blue = 100;
-    let color = `rgba(${red}, ${green}, ${blue}, 0.5`;
-    cursor.style.background = `radial-gradient(circle, rgb(${red}, ${green}, ${blue}) 0%, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0) 100%)`;
+    const keyframesArray = cursors.map((cursor) => ({
+      transform: `translate(${event.clientX - cursor.offsetWidth / 2}px, ${event.clientY - cursor.offsetHeight / 2}px)`,
+    }));
+
+    cursors.forEach((cursor, index) => {
+      cursor.animate(keyframesArray[index], {
+        duration: 800 - 100 * index,
+        fill: "forwards",
+      });
+
+      let red = Math.round(((event.clientX - cursor.offsetWidth / 2) / header.offsetWidth) * 255);
+      let green = Math.round(
+        ((event.clientY - cursor.offsetHeight / 2) / header.offsetHeight) * 255
+      );
+      let blue = 100;
+      cursor.style.background = `radial-gradient(circle, rgb(${red}, ${green}, ${blue}) 0%, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0) 100%)`;
+    });
+  });
+
+  const hand = document.getElementById("hand") as HTMLElement;
+  hand.addEventListener("click", () => {
+    hand.classList.remove("animate-waving-hand");
+    hand.classList.add("animate-ping");
+    setTimeout(() => {
+      hand.classList.remove("animate-ping");
+      hand.classList.add("animate-waving-hand");
+    }, 1000);
   });
 </script>
 
@@ -60,11 +81,10 @@
   #gradient {
     background: linear-gradient(to top, rgba(248, 242, 242, 1) 0%, rgba(0, 0, 0, 0) 100%);
   }
-  #cursor-glow {
+  .cursor-glow {
     height: 250px;
     width: 250px;
     border-radius: 50%;
-    background: radial-gradient(circle, --cursorColor 0%, rgba(255, 255, 255, 0) 100%);
     position: absolute;
     top: 0;
     left: 0;
