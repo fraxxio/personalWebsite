@@ -1,3 +1,7 @@
+---
+import PrimaryBtn from "../components/PrimaryBtn.astro";
+---
+
 <header class='flex justify-center relative overflow-hidden' id='headerContainer'>
   <div id='grainedContainer'></div>
   <div id='cursor-glow' class='max-[520px]:hidden cursor-glow'></div>
@@ -14,6 +18,7 @@
     >
       I'm self-taught web developer that creates full-stack web apps
     </h1>
+    <PrimaryBtn />
   </div>
   <div id='gradient' class='h-16 w-full absolute bottom-0'></div>
 </header>
@@ -75,11 +80,11 @@
   #grainedContainer {
     width: 100vw;
     height: 105vh;
-    background: radial-gradient(at center top, #1900ffa6, #f8f2f2);
+    background: radial-gradient(at center top, #1900ff4b, #f8f2f2);
     z-index: -1;
   }
   #gradient {
-    background: linear-gradient(to top, rgba(248, 242, 242, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to top, #f8f2f2 0%, rgba(0, 0, 0, 0) 100%);
   }
   .cursor-glow {
     height: 250px;

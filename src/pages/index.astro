@@ -2,11 +2,34 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <Layout title='DevRokas Portfolio'>
   <Hero />
   <main>
-    <About />
+    <div id='gradient' class='h-full w-full overflow-visible -z-10 relative'>
+      <div id='transition' class='h-4 w-full absolute top-0'></div>
+      <div id='transition-b' class='h-28 w-full absolute bottom-0'></div>
+      <About />
+    </div>
+    <Projects />
   </main>
 </Layout>
+
+<style>
+  #gradient {
+    background: radial-gradient(
+      circle at 100% 46%,
+      rgba(255, 255, 0, 0.8) 0%,
+      rgba(247, 255, 161, 0.35) 57%,
+      rgba(248, 242, 242, 1) 91%
+    );
+  }
+  #transition {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #f8f2f2 100%);
+  }
+  #transition-b {
+    background: linear-gradient(to top, #f8f2f2 0%, rgba(0, 0, 0, 0) 100%);
+  }
+</style>
