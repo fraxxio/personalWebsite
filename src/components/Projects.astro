@@ -5,16 +5,15 @@ import Typescript from "../components/badges/Typescript.astro";
 import NextJS from "../components/badges/NextJS.astro";
 ---
 
-<section id='projects' class='container mx-auto my-40'>
-  <h1 class='uppercase font-semibold text-7xl text-center pb-16'>Projects</h1>
-  <div class='mx-auto w-fit border-b-2 border-black cursor-pointer'>
+<section id='projects' class='w-[60%] mx-auto my-40'>
+  <h1 class='uppercase font-semibold text-7xl text-center pb-20'>Projects</h1>
+  <div class='mx-auto w-fit border-b-2 border-black cursor-pointer mb-16'>
     <div class='overflow-hidden border-2 border-black rounded-md'>
       <img
         id='project1'
         src='/MockSocialThumbnail.png'
         alt='Project thumbnail'
-        width='1100px'
-        height='1500px'
+        width='100%'
         class='hover:animate-hover-project object-cover'
       />
     </div>
@@ -62,6 +61,120 @@ import NextJS from "../components/badges/NextJS.astro";
             d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
         >
       </a>
+    </div>
+  </div>
+  <div class='grid grid-cols-2 gap-8'>
+    <div class='w-fit border-b-2 border-black cursor-pointer'>
+      <div class='overflow-hidden border-2 border-black rounded-md'>
+        <img
+          id='project1'
+          src='/MockSocialThumbnail.png'
+          alt='Project thumbnail'
+          width='100%'
+          class='hover:animate-hover-project object-cover'
+        />
+      </div>
+      <div class='flex gap-3 pt-3'>
+        <FrontEnd />
+        <Typescript />
+        <Tailwind />
+        <NextJS />
+        <div class='circle' id='circle'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
+          >
+        </div>
+      </div>
+      <div class='flex items-center justify-between'>
+        <div>
+          <h2 class='pt-4 font-semibold text-3xl'>MockSocial</h2>
+          <p class='text-lg pb-4'>Generate fake social media post screenshots.</p>
+        </div>
+        <a
+          href='https://mocksocial.vercel.app/'
+          rel='noopener nofollow'
+          target='_blank'
+          class='p-4 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
+              d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
+          >
+        </a>
+      </div>
+    </div>
+    <div class='w-fit border-b-2 border-black cursor-pointer'>
+      <div class='overflow-hidden border-2 border-black rounded-md'>
+        <img
+          id='project1'
+          src='/MockSocialThumbnail.png'
+          alt='Project thumbnail'
+          width='100%'
+          class='hover:animate-hover-project object-cover'
+        />
+      </div>
+      <div class='flex gap-3 pt-3'>
+        <FrontEnd />
+        <Typescript />
+        <Tailwind />
+        <NextJS />
+        <div class='circle' id='circle'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
+          >
+        </div>
+      </div>
+      <div class='flex items-center justify-between'>
+        <div>
+          <h2 class='pt-4 font-semibold text-3xl'>MockSocial</h2>
+          <p class='text-lg pb-4'>Generate fake social media post screenshots.</p>
+        </div>
+        <a
+          href='https://mocksocial.vercel.app/'
+          rel='noopener nofollow'
+          target='_blank'
+          class='p-4 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
+              d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
+          >
+        </a>
+      </div>
     </div>
   </div>
 </section>
