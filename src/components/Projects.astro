@@ -182,18 +182,20 @@ import NextJS from "../components/badges/NextJS.astro";
 <script>
   window.addEventListener("DOMContentLoaded", () => {
     const circle = document.getElementById("circle") as HTMLElement;
-    const project1 = document.getElementById("project1") as HTMLElement;
+    const projectElements = document.querySelectorAll("#project1");
 
     document.addEventListener("mousemove", (e) => {
       circle.style.transform = `translate(${e.clientX - 45}px, ${e.clientY - 45}px)`;
     });
 
-    project1.addEventListener("mouseenter", () => {
-      circle.style.opacity = "1";
-    });
+    projectElements.forEach((project) => {
+      project.addEventListener("mouseenter", () => {
+        circle.style.opacity = "1";
+      });
 
-    project1.addEventListener("mouseleave", () => {
-      circle.style.opacity = "0";
+      project.addEventListener("mouseleave", () => {
+        circle.style.opacity = "0";
+      });
     });
   });
 </script>
@@ -215,6 +217,7 @@ import NextJS from "../components/badges/NextJS.astro";
     transform: translate(0, 0);
     transition-duration: 0.2s;
     transition-timing-function: ease-out;
+    z-index: 5;
     opacity: 0;
   }
 </style>
