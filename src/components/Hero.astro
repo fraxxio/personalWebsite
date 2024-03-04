@@ -20,7 +20,7 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
     </h1>
     <PrimaryBtn />
   </div>
-  <div id='gradient' class='h-16 w-full absolute bottom-0'></div>
+  <div id='gradient' class='h-20 w-full absolute bottom-0'></div>
 </header>
 
 <script>
@@ -55,13 +55,6 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
         duration: 800 - 100 * index,
         fill: "forwards",
       });
-
-      let red = Math.round(((event.clientX - cursor.offsetWidth / 2) / header.offsetWidth) * 255);
-      let green = Math.round(
-        ((event.clientY - cursor.offsetHeight / 2) / header.offsetHeight) * 255
-      );
-      let blue = 100;
-      cursor.style.background = `radial-gradient(circle, rgb(${red}, ${green}, ${blue}) 0%, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0) 100%)`;
     });
   });
 
@@ -80,17 +73,23 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
   #grainedContainer {
     width: 100vw;
     height: 105vh;
-    background: radial-gradient(at center top, #1900ff4b, #f8f2f2);
+    background: radial-gradient(
+      circle at 50% -20%,
+      rgba(68, 0, 255, 0.8) 5%,
+      rgba(244, 228, 54, 0.363) 30%,
+      rgba(248, 242, 242, 1) 60%
+    );
     z-index: -1;
   }
   #gradient {
-    background: linear-gradient(to top, #f8f2f2 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to top, #d1f1a0 0%, rgba(0, 0, 0, 0) 100%);
   }
   .cursor-glow {
-    height: 250px;
-    width: 250px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     position: absolute;
+    border: 2px solid rgba(0, 0, 0, 0.308);
     top: 0;
     left: 0;
   }

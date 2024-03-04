@@ -2,25 +2,34 @@
 import SecondaryBtn from "../components/SecondaryBtn.astro";
 ---
 
-<section id='aboutme' class='container mx-auto py-32 relative'>
-  <div class='w-[50%]'>
-    <h1 class='text-8xl font-semibold border-l-4 pl-4 border-black mb-16'>Who am I?</h1>
-    <p class='text-lg'>
-      My name is Rokas and I am a front-end web developer, designer based in Lithuania. I do
-      freelancing for a living and study at the same time.
-    </p>
-    <div class='h-px bg-black w-full my-8'></div>
-    <div class='flex items-center gap-8'>
-      <p class='text-lg'>Currently studying software engineering in</p>
-      <img src='/VT.png' alt='University logo' />
+<section id='aboutme' class='relative'>
+  <div class='container mx-auto'>
+    <div class='py-32 w-[50%]'>
+      <h1 class='text-8xl font-semibold border-l-4 pl-4 border-black mb-16'>Who am I?</h1>
+      <p class='text-lg'>
+        My name is Rokas and I am a front-end web developer, designer based in Lithuania. I do
+        freelancing for a living and study at the same time.
+      </p>
+      <div class='h-px bg-black w-full my-8'></div>
+      <div class='flex items-center gap-8'>
+        <p class='text-lg'>Currently studying software engineering in</p>
+        <img src='/VT.png' alt='University logo' />
+      </div>
+      <div class='h-px bg-black w-full my-8'></div>
+      <h2 class='text-2xl font-semibold pb-3'>I specialize in</h2>
+      <p>
+        Creating distinctive websites that has good user experience and performs well. For
+        development I use React or Next.Js. I also create websites in Webflow and Wix. For UI/UX
+        design I use Figma.
+      </p>
+      <SecondaryBtn />
     </div>
-    <div class='h-px bg-black w-full my-8'></div>
-    <h2 class='text-2xl font-semibold pb-3'>I specialize in</h2>
-    <p>
-      Creating distinctive websites that has good user experience and performs well. For development
-      I use React or Next.Js. I also create websites in Webflow and Wix. For UI/UX design I use
-      Figma.
-    </p>
-    <SecondaryBtn />
   </div>
+  <div id='gradient' class='w-full overflow-visible -z-10 h-[40rem] absolute top-0'></div>
 </section>
+
+<style>
+  #gradient {
+    background: linear-gradient(179deg, rgba(169, 241, 76, 0.5) 0%, rgba(248, 242, 242, 1) 100%);
+  }
+</style>
