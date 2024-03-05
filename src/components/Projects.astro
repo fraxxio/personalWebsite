@@ -5,7 +5,7 @@ import Typescript from "../components/badges/Typescript.astro";
 import NextJS from "../components/badges/NextJS.astro";
 ---
 
-<section id='projects' class='mb-40 mt-20'>
+<section id='projects' class='mb-40 mt-20 max-[1580px]:mt-0'>
   <div class='scroller py-40' data-speed='slow'>
     <ul class='tag-list scroller__inner text-8xl font-semibold uppercase'>
       <li>Projects</li>
@@ -17,8 +17,8 @@ import NextJS from "../components/badges/NextJS.astro";
       <li>Projects</li>
     </ul>
   </div>
-  <div class='w-[60%] mx-auto'>
-    <div class='mx-auto w-fit border-b-2 border-black cursor-pointer mb-16'>
+  <div class='mx-[20%] max-md:mx-4'>
+    <div class='w-fit mx-auto border-b-2 border-black cursor-pointer mb-16'>
       <div class='overflow-hidden border-2 border-black rounded-md'>
         <img
           id='project1'
@@ -28,7 +28,7 @@ import NextJS from "../components/badges/NextJS.astro";
           class='hover:animate-hover-project object-cover'
         />
       </div>
-      <div class='flex gap-3 pt-3'>
+      <div class='flex gap-3 pt-3 flex-wrap'>
         <FrontEnd />
         <Typescript />
         <Tailwind />
@@ -49,19 +49,18 @@ import NextJS from "../components/badges/NextJS.astro";
       </div>
       <div class='flex items-center justify-between'>
         <div>
-          <h2 class='pt-4 font-semibold text-3xl'>MockSocial</h2>
-          <p class='text-lg pb-4'>Generate fake social media post screenshots.</p>
+          <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>MockSocial</h2>
+          <p class='text-lg max-md:text-base pb-4'>Generate fake social media post screenshots.</p>
         </div>
         <a
           href='https://mocksocial.vercel.app/'
           rel='noopener nofollow'
           target='_blank'
-          class='p-4 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
+          class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
+            class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
             viewBox='0 0 24 24'
             fill='none'
             stroke='currentColor'
@@ -74,7 +73,7 @@ import NextJS from "../components/badges/NextJS.astro";
         </a>
       </div>
     </div>
-    <div class='grid grid-cols-2 gap-8'>
+    <div class='grid grid-cols-2 gap-8 max-[1580px]:grid-cols-1'>
       <div class='w-fit border-b-2 border-black cursor-pointer'>
         <div class='overflow-hidden border-2 border-black rounded-md'>
           <img
@@ -85,7 +84,7 @@ import NextJS from "../components/badges/NextJS.astro";
             class='hover:animate-hover-project object-cover'
           />
         </div>
-        <div class='flex gap-3 pt-3'>
+        <div class='flex gap-3 pt-3 flex-wrap'>
           <FrontEnd />
           <Typescript />
           <Tailwind />
@@ -106,19 +105,20 @@ import NextJS from "../components/badges/NextJS.astro";
         </div>
         <div class='flex items-center justify-between'>
           <div>
-            <h2 class='pt-4 font-semibold text-3xl'>MockSocial</h2>
-            <p class='text-lg pb-4'>Generate fake social media post screenshots.</p>
+            <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>MockSocial</h2>
+            <p class='text-lg max-md:text-base pb-4'>
+              Generate fake social media post screenshots.
+            </p>
           </div>
           <a
             href='https://mocksocial.vercel.app/'
             rel='noopener nofollow'
             target='_blank'
-            class='p-4 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
+            class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
+              class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
               viewBox='0 0 24 24'
               fill='none'
               stroke='currentColor'
@@ -141,7 +141,7 @@ import NextJS from "../components/badges/NextJS.astro";
             class='hover:animate-hover-project object-cover'
           />
         </div>
-        <div class='flex gap-3 pt-3'>
+        <div class='flex gap-3 pt-3 flex-wrap'>
           <FrontEnd />
           <Typescript />
           <Tailwind />
@@ -162,19 +162,20 @@ import NextJS from "../components/badges/NextJS.astro";
         </div>
         <div class='flex items-center justify-between'>
           <div>
-            <h2 class='pt-4 font-semibold text-3xl'>MockSocial</h2>
-            <p class='text-lg pb-4'>Generate fake social media post screenshots.</p>
+            <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>MockSocial</h2>
+            <p class='text-lg max-md:text-base pb-4'>
+              Generate fake social media post screenshots.
+            </p>
           </div>
           <a
             href='https://mocksocial.vercel.app/'
             rel='noopener nofollow'
             target='_blank'
-            class='p-4 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
+            class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
+              class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
               viewBox='0 0 24 24'
               fill='none'
               stroke='currentColor'

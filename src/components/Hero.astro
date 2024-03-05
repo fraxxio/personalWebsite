@@ -10,8 +10,8 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
   <div id='cursor-glow4' class='max-[520px]:hidden cursor-glow'></div>
   <div class='absolute container text-center font-semibold pt-[15rem]'>
     <p class='flex justify-center text-2xl pb-4 z-0 gap-2 max-md:text-xl max-sm:text-lg'>
-      <span id='hand' class='animate-waving-hand cursor-pointer relative'>👋 </span>Hi, my name is
-      Rokas
+      <span id='hand' class='wave-animation animate-waving-hand cursor-pointer'>👋🏼 </span>
+      Hi, my name is Rokas
     </p>
     <h1
       class='text-9xl max-lg:text-8xl max-md:text-7xl max-sm:text-6xl max-[550px]:text-5xl max-[380px]:text-3xl z-0'
@@ -56,15 +56,31 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
         fill: "forwards",
       });
     });
+
+    if (event.target instanceof Element) {
+      const interactable = event.target.closest(".interactable");
+      const interacting = interactable !== null;
+
+      if (interacting) {
+        cursors.forEach((cursor) => {
+          cursor.style.display = "none";
+          ``;
+        });
+      } else {
+        cursors.forEach((cursor) => {
+          cursor.style.display = "block";
+        });
+      }
+    }
   });
 
   const hand = document.getElementById("hand") as HTMLElement;
   hand.addEventListener("click", () => {
-    hand.classList.remove("animate-waving-hand");
+    hand.classList.remove("wave-animation");
     hand.classList.add("animate-ping");
     setTimeout(() => {
       hand.classList.remove("animate-ping");
-      hand.classList.add("animate-waving-hand");
+      hand.classList.add("wave-animation");
     }, 1000);
   });
 </script>
@@ -92,5 +108,37 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
     border: 2px solid rgba(0, 0, 0, 0.308);
     top: 0;
     left: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(14deg);
+    }
+    20% {
+      transform: rotate(-8deg);
+    }
+    30% {
+      transform: rotate(14deg);
+    }
+    40% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  .wave-animation {
+    animation: wave 3s linear infinite;
   }
 </style>

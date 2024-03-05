@@ -3,20 +3,22 @@ import SecondaryBtn from "../components/SecondaryBtn.astro";
 ---
 
 <section id='aboutme' class='relative'>
-  <div class='container mx-auto'>
-    <div class='py-32 w-[50%]'>
-      <h1 class='text-8xl font-semibold border-l-4 pl-4 border-black mb-16'>Who am I?</h1>
-      <p class='text-lg'>
+  <div class='container mx-auto pt-20'>
+    <div class='py-32 w-[50%] max-[1600px]:px-8 max-lg:w-[100%]'>
+      <h1 class='text-8xl font-semibold border-l-4 pl-4 border-black mb-16 max-md:text-6xl'>
+        Who am I?
+      </h1>
+      <p class='text-lg max-md:text-base'>
         My name is Rokas and I am a front-end web developer, designer based in Lithuania. I do
         freelancing for a living and study at the same time.
       </p>
       <div class='h-px bg-black w-full my-8'></div>
-      <div class='flex items-center gap-8'>
-        <p class='text-lg'>Currently studying software engineering in</p>
+      <div class='flex items-center gap-8 max-sm:flex-col'>
+        <p class='text-lg max-md:text-base'>Currently studying software engineering in</p>
         <img src='/VT.png' alt='University logo' />
       </div>
       <div class='h-px bg-black w-full my-8'></div>
-      <h2 class='text-2xl font-semibold pb-3'>I specialize in</h2>
+      <h2 class='text-2xl font-semibold pb-3 max-md:text-xl'>I specialize in</h2>
       <p>
         Creating distinctive websites that has good user experience and performs well. For
         development I use React or Next.Js. I also create websites in Webflow and Wix. For UI/UX
