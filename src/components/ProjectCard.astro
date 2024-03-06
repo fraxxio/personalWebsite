@@ -4,65 +4,67 @@ import Tailwind from "../components/badges/Tailwind.astro";
 import Typescript from "../components/badges/Typescript.astro";
 import NextJS from "../components/badges/NextJS.astro";
 
-const { featured } = Astro.props;
+const { featured, title, description, tags, thumbnail, slug } = Astro.props;
 ---
 
 <div
-  class={`w-fit mx-auto border-b-2 border-black cursor-pointer mb-16 ${featured && "col-span-2"}`}
+  class={` border-b-2 border-black cursor-pointer  mb-16 ${featured && "col-span-2 max-[1580px]:col-span-1"} `}
 >
-  <div class='overflow-hidden border-2 border-black rounded-md'>
-    <img
-      id='project1'
-      src='/MockSocialThumbnail.png'
-      alt='Project thumbnail'
-      width='100%'
-      class='hover:animate-hover-project object-cover'
-    />
-  </div>
-  <div class='flex gap-3 pt-3 flex-wrap'>
-    <FrontEnd />
-    <Typescript />
-    <Tailwind />
-    <NextJS />
-    <div class='circle' id='circle'>
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        width='24'
-        height='24'
-        viewBox='0 0 24 24'
-        fill='none'
-        stroke='currentColor'
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
-      >
+  <a href={`/projects/${slug}`}>
+    <div class='overflow-hidden border-2 border-black rounded-md'>
+      <img
+        id='project1'
+        src={thumbnail}
+        alt='Project thumbnail'
+        width='100%'
+        class='hover:animate-hover-project object-cover'
+      />
     </div>
-  </div>
-  <div class='flex items-center justify-between'>
-    <div>
-      <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>MockSocial</h2>
-      <p class='text-lg max-md:text-base pb-4'>Generate fake social media post screenshots.</p>
+    <div class='flex gap-3 pt-3 flex-wrap'>
+      <FrontEnd />
+      <Typescript />
+      <Tailwind />
+      <NextJS />
+      <div class='circle' id='circle'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='24'
+          height='24'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
+        >
+      </div>
     </div>
-    <a
-      href='https://mocksocial.vercel.app/'
-      rel='noopener nofollow'
-      target='_blank'
-      class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
-    >
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
-        viewBox='0 0 24 24'
-        fill='none'
-        stroke='currentColor'
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
-        ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
-          d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
+    <div class='flex items-center justify-between'>
+      <div>
+        <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>{title}</h2>
+        <p class='text-lg max-md:text-base pb-4'>{description}</p>
+      </div>
+      <a
+        href='https://mocksocial.vercel.app/'
+        rel='noopener nofollow'
+        target='_blank'
+        class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
       >
-    </a>
-  </div>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
+            d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
+        >
+      </a>
+    </div>
+  </a>
 </div>
 
 <script>

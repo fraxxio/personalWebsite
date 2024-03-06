@@ -2,7 +2,7 @@
 import PrimaryBtn from "../components/PrimaryBtn.astro";
 ---
 
-<header class='flex justify-center relative overflow-hidden' id='headerContainer'>
+<header class='flex justify-center relative overflow-hidden' id='home'>
   <div transition:persist id='grainedContainer'></div>
   <div id='cursor-glow' class='max-[520px]:hidden cursor-glow'></div>
   <div id='cursor-glow2' class='max-[520px]:hidden cursor-glow'></div>
@@ -37,7 +37,7 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
 
   grained("#grainedContainer", options);
 
-  const header = document.getElementById("headerContainer") as HTMLElement;
+  const header = document.getElementById("home") as HTMLElement;
   const cursor = document.getElementById("cursor-glow") as HTMLElement;
   const cursor2 = document.getElementById("cursor-glow2") as HTMLElement;
   const cursor3 = document.getElementById("cursor-glow3") as HTMLElement;

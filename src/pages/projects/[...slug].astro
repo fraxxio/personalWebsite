@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import { CollectionEntry, getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+type Props = {
+  project: CollectionEntry<"projects">;
+};
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title={`${project.data.title} | Rokas`}>
+  <main class='container mx-auto mt-40'>
+    <div
+      class='prose dark:prose-invert prose-h1:font-bold prose-h1:text-xl prose-a:text-blue-600 prose-p:text-justify prose-img:rounded-xl prose-headings:underline'
+    >
+      <Content />
+    </div>
+  </main>
+</Layout>
