@@ -2,7 +2,7 @@
     title: DiscoverFood
     description: Generate fake social media post screenshots. Yeah thats true. Am that o block cuh ong fr fr this shit don matter to me foo
     tags: ["FrontEnd", "NextJS", "Typescript"]
-    thumbnail: /MockSocialThumbnail.png
+    thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: false
 ---
 

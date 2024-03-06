@@ -2,7 +2,7 @@
     title: Abomination
     description: Generate fake social media post screenshots. Yeah thats true.
     tags: ["FrontEnd", "NextJS", "Typescript"]
-    thumbnail: /MockSocialThumbnail.png
+    thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: false
 ---
 

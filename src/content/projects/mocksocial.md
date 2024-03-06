@@ -2,7 +2,7 @@
     title: MockSocial
     description: Generate fake social media post screenshots.
     tags: ["FrontEnd", "NextJS", "Tailwind", "Typescript"]
-    thumbnail: /MockSocialThumbnail.png
+    thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: true
 ---
 
