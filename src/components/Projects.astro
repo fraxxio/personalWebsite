@@ -1,8 +1,5 @@
 ---
-import FrontEnd from "../components/badges/FrontEnd.astro";
-import Tailwind from "../components/badges/Tailwind.astro";
-import Typescript from "../components/badges/Typescript.astro";
-import NextJS from "../components/badges/NextJS.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <section id='projects' class='mb-40 mt-20 max-[1580px]:mt-0'>
@@ -17,201 +14,14 @@ import NextJS from "../components/badges/NextJS.astro";
       <li>Projects</li>
     </ul>
   </div>
-  <div class='mx-[20%] max-md:mx-4'>
-    <div class='w-fit mx-auto border-b-2 border-black cursor-pointer mb-16'>
-      <div class='overflow-hidden border-2 border-black rounded-md'>
-        <img
-          id='project1'
-          src='/MockSocialThumbnail.png'
-          alt='Project thumbnail'
-          width='100%'
-          class='hover:animate-hover-project object-cover'
-        />
-      </div>
-      <div class='flex gap-3 pt-3 flex-wrap'>
-        <FrontEnd />
-        <Typescript />
-        <Tailwind />
-        <NextJS />
-        <div class='circle' id='circle'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
-          >
-        </div>
-      </div>
-      <div class='flex items-center justify-between'>
-        <div>
-          <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>MockSocial</h2>
-          <p class='text-lg max-md:text-base pb-4'>Generate fake social media post screenshots.</p>
-        </div>
-        <a
-          href='https://mocksocial.vercel.app/'
-          rel='noopener nofollow'
-          target='_blank'
-          class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
-              d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
-          >
-        </a>
-      </div>
-    </div>
-    <div class='grid grid-cols-2 gap-8 max-[1580px]:grid-cols-1'>
-      <div class='w-fit border-b-2 border-black cursor-pointer'>
-        <div class='overflow-hidden border-2 border-black rounded-md'>
-          <img
-            id='project1'
-            src='/MockSocialThumbnail.png'
-            alt='Project thumbnail'
-            width='100%'
-            class='hover:animate-hover-project object-cover'
-          />
-        </div>
-        <div class='flex gap-3 pt-3 flex-wrap'>
-          <FrontEnd />
-          <Typescript />
-          <Tailwind />
-          <NextJS />
-          <div class='circle' id='circle'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
-            >
-          </div>
-        </div>
-        <div class='flex items-center justify-between'>
-          <div>
-            <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>MockSocial</h2>
-            <p class='text-lg max-md:text-base pb-4'>
-              Generate fake social media post screenshots.
-            </p>
-          </div>
-          <a
-            href='https://mocksocial.vercel.app/'
-            rel='noopener nofollow'
-            target='_blank'
-            class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
-                d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
-            >
-          </a>
-        </div>
-      </div>
-      <div class='w-fit border-b-2 border-black cursor-pointer'>
-        <div class='overflow-hidden border-2 border-black rounded-md'>
-          <img
-            id='project1'
-            src='/MockSocialThumbnail.png'
-            alt='Project thumbnail'
-            width='100%'
-            class='hover:animate-hover-project object-cover'
-          />
-        </div>
-        <div class='flex gap-3 pt-3 flex-wrap'>
-          <FrontEnd />
-          <Typescript />
-          <Tailwind />
-          <NextJS />
-          <div class='circle' id='circle'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
-            >
-          </div>
-        </div>
-        <div class='flex items-center justify-between'>
-          <div>
-            <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>MockSocial</h2>
-            <p class='text-lg max-md:text-base pb-4'>
-              Generate fake social media post screenshots.
-            </p>
-          </div>
-          <a
-            href='https://mocksocial.vercel.app/'
-            rel='noopener nofollow'
-            target='_blank'
-            class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
-                d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
-            >
-          </a>
-        </div>
-      </div>
-    </div>
+  <div class='mx-[20%] max-md:mx-4 grid grid-cols-2 gap-8 max-[1580px]:grid-cols-1'>
+    <ProjectCard featured={true} />
+    <ProjectCard />
+    <ProjectCard />
   </div>
 </section>
 
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const circle = document.getElementById("circle") as HTMLElement;
-    const projectElements = document.querySelectorAll("#project1");
-
-    document.addEventListener("mousemove", (e) => {
-      circle.style.transform = `translate(${e.clientX - 45}px, ${e.clientY - 45}px)`;
-    });
-
-    projectElements.forEach((project) => {
-      project.addEventListener("mouseenter", () => {
-        circle.style.opacity = "1";
-      });
-
-      project.addEventListener("mouseleave", () => {
-        circle.style.opacity = "0";
-      });
-    });
-  });
-
   const scroller = document.querySelector(".scroller") as HTMLElement;
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     addAnimation();
@@ -232,25 +42,6 @@ import NextJS from "../components/badges/NextJS.astro";
 </script>
 
 <style>
-  .circle {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    backdrop-filter: invert(1) grayscale(1);
-    -webkit-backdrop-filter: invert(1) grayscale(1);
-    transform: translate(0, 0);
-    transition-duration: 0.2s;
-    transition-timing-function: ease-out;
-    z-index: 5;
-    opacity: 0;
-  }
   .scroller {
     width: 100%;
   }

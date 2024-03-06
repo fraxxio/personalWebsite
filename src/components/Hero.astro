@@ -3,7 +3,7 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
 ---
 
 <header class='flex justify-center relative overflow-hidden' id='headerContainer'>
-  <div id='grainedContainer'></div>
+  <div transition:persist id='grainedContainer'></div>
   <div id='cursor-glow' class='max-[520px]:hidden cursor-glow'></div>
   <div id='cursor-glow2' class='max-[520px]:hidden cursor-glow'></div>
   <div id='cursor-glow3' class='max-[520px]:hidden cursor-glow'></div>
@@ -51,6 +51,7 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
     }));
 
     cursors.forEach((cursor, index) => {
+      cursor.style.display = "block";
       cursor.animate(keyframesArray[index], {
         duration: 800 - 100 * index,
         fill: "forwards",
@@ -101,6 +102,7 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
     background: linear-gradient(to top, #d1f1a0 0%, rgba(0, 0, 0, 0) 100%);
   }
   .cursor-glow {
+    display: none;
     height: 50px;
     width: 50px;
     border-radius: 50%;
