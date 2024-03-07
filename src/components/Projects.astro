@@ -7,8 +7,10 @@ const featured = await getEntry("projects", "mocksocial");
 ---
 
 <section id='projects' class='mb-40 mt-20 max-[1580px]:mt-0'>
-  <div class='scroller py-40' data-speed='slow'>
-    <ul class='tag-list scroller__inner text-8xl font-semibold uppercase'>
+  <div class='scroller py-40 max-sm:py-20' data-speed='slow'>
+    <ul
+      class='tag-list scroller__inner text-8xl font-semibold uppercase hide max-md:text-6xl max-sm:text-4xl'
+    >
       <li>Projects</li>
       <li>Projects</li>
       <li>Projects</li>
@@ -18,30 +20,32 @@ const featured = await getEntry("projects", "mocksocial");
       <li>Projects</li>
     </ul>
   </div>
-  <div class='mx-[20%] max-md:mx-4 grid grid-cols-2 gap-x-8 max-[1580px]:grid-cols-1'>
-    <ProjectCard
-      featured={featured.data.featured}
-      title={featured.data.title}
-      description={featured.data.description}
-      tags={featured.data.tags}
-      thumbnail={featured.data.thumbnail}
-      slug={featured.slug}
-    />
-    {
-      projects.map(
-        (project) =>
-          !project.data.featured && (
-            <ProjectCard
-              featured={project.data.featured}
-              title={project.data.title}
-              description={project.data.description}
-              tags={project.data.tags}
-              thumbnail={project.data.thumbnail}
-              slug={project.slug}
-            />
-          )
-      )
-    }
+  <div class='mx-[20%] max-md:mx-4'>
+    <div class='hide col-span-2 max-[1580px]:col-span-1'>
+      <ProjectCard
+        title={featured.data.title}
+        description={featured.data.description}
+        tags={featured.data.tags}
+        thumbnail={featured.data.thumbnail}
+        slug={featured.slug}
+      />
+    </div>
+    <div class='hide grid grid-cols-2 gap-x-8 max-[1580px]:grid-cols-1'>
+      {
+        projects.map(
+          (project) =>
+            !project.data.featured && (
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                tags={project.data.tags}
+                thumbnail={project.data.thumbnail}
+                slug={project.slug}
+              />
+            )
+        )
+      }
+    </div>
   </div>
 </section>
 
@@ -63,6 +67,17 @@ const featured = await getEntry("projects", "mocksocial");
       scrollerInner.appendChild(duplicatedItem);
     });
   }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  });
+
+  const hiddenElements = document.querySelectorAll(".hide");
+  hiddenElements.forEach((element) => observer.observe(element));
 </script>
 
 <style>
@@ -84,17 +99,35 @@ const featured = await getEntry("projects", "mocksocial");
   .scroller[data-animated="true"] .scroller__inner {
     width: max-content;
     flex-wrap: nowrap;
-    animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear
-      infinite;
-  }
-
-  .scroller[data-speed="slow"] {
-    --_animation-duration: 60s;
+    animation: scroll linear;
+    animation-timeline: scroll(root);
   }
 
   @keyframes scroll {
     to {
       transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  .hide {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(30%);
+    transition: all 500ms;
+  }
+
+  .show {
+    filter: blur(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion) {
+    .scroller {
+      animation: none;
+    }
+    .hide {
+      transition: none;
     }
   }
 </style>

@@ -57,4 +57,29 @@
     border-radius: 50%;
     background-color: white;
   }
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  a {
+    opacity: 0; /* Set initial opacity to 0 */
+  }
+
+  a {
+    animation: fade-up 800ms ease-out forwards;
+    animation-delay: 1300ms;
+  }
+
+  @media (prefers-reduced-motion) {
+    a {
+      animation: none;
+    }
+  }
 </style>

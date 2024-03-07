@@ -143,4 +143,37 @@ import PrimaryBtn from "../components/PrimaryBtn.astro";
   .wave-animation {
     animation: wave 3s linear infinite;
   }
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  h1,
+  p {
+    opacity: 0; /* Set initial opacity to 0 */
+  }
+
+  h1 {
+    animation: fade-up 800ms ease-out forwards;
+    animation-delay: 1s;
+  }
+
+  p {
+    animation: fade-up 800ms ease-out forwards;
+    animation-delay: 700ms;
+  }
+
+  @media (prefers-reduced-motion) {
+    h1,
+    p {
+      animation: none;
+    }
+  }
 </style>

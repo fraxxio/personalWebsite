@@ -5,26 +5,28 @@ import SecondaryBtn from "../components/SecondaryBtn.astro";
 <section id='aboutme' class='relative'>
   <div class='container mx-auto pt-20'>
     <div class='py-32 w-[50%] max-[1600px]:px-8 max-lg:w-[100%]'>
-      <h1 class='text-8xl font-semibold border-l-4 pl-4 border-black mb-16 max-md:text-6xl'>
+      <h1 class='text-8xl font-semibold border-l-4 pl-4 border-black mb-16 max-md:text-6xl hide'>
         Who am I?
       </h1>
-      <p class='text-lg max-md:text-base'>
+      <p class='text-lg max-md:text-base hide'>
         My name is Rokas and I am a front-end web developer, designer based in Lithuania. I do
         freelancing for a living and study at the same time.
       </p>
       <div class='h-px bg-black w-full my-8'></div>
-      <div class='flex items-center gap-8 max-sm:flex-col'>
+      <div class='flex items-center gap-8 max-sm:flex-col hide'>
         <p class='text-lg max-md:text-base'>Currently studying software engineering in</p>
         <img src='/VT.png' alt='University logo' loading='lazy' />
       </div>
       <div class='h-px bg-black w-full my-8'></div>
-      <h2 class='text-2xl font-semibold pb-3 max-md:text-xl'>I specialize in</h2>
-      <p>
+      <h2 class='text-2xl font-semibold pb-3 max-md:text-xl hide'>I specialize in</h2>
+      <p class='hide'>
         Creating distinctive websites that has good user experience and performs well. For
         development I use React or Next.Js. I also create websites in Webflow and Wix. For UI/UX
         design I use Figma.
       </p>
-      <SecondaryBtn />
+      <div class='hide'>
+        <SecondaryBtn />
+      </div>
     </div>
   </div>
   <div id='gradient' class='w-full overflow-visible -z-10 h-[40rem] absolute top-0'></div>
@@ -34,4 +36,36 @@ import SecondaryBtn from "../components/SecondaryBtn.astro";
   #gradient {
     background: linear-gradient(179deg, rgba(169, 241, 76, 0.5) 0%, rgba(248, 242, 242, 1) 100%);
   }
+
+  .hide {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-100%);
+    transition: all 800ms;
+  }
+
+  .show {
+    filter: blur(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion) {
+    .hide {
+      transition: none;
+    }
+  }
 </style>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  });
+
+  const hiddenElements = document.querySelectorAll(".hide");
+  hiddenElements.forEach((element) => observer.observe(element));
+</script>

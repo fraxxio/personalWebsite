@@ -4,10 +4,10 @@
       class='container text-white grid grid-cols-2 pt-24 pb-12 items-start mx-auto justify-items-center max-[1050px]:grid-cols-1 max-[1050px]:items-center'
     >
       <div class='flex flex-col items-center'>
-        <h1 class='font-semibold text-8xl pb-12 leading-[.7] max-md:text-5xl'>Let's talk</h1>
+        <h1 class='font-semibold text-8xl pb-12 leading-[.7] max-md:text-5xl hide'>Let's talk</h1>
         <button
           id='CopyBtn'
-          class='flex gap-3 items-center mb-12 font-semibold text-3xl duration-300 border-b border-transparent hover:border-white py-1 px-2 has-tooltip relative max-md:text-lg'
+          class='flex gap-3 items-center mb-12 font-semibold text-3xl duration-300 border-b border-transparent hover:border-white py-1 px-2 has-tooltip relative max-md:text-lg hide'
         >
           <span
             class='tooltip rounded p-1 bg-white text-black text-sm -mt-20 right-1/2 translate-x-1/2'
@@ -29,7 +29,7 @@
           >
           webdevrokas@gmail.com
         </button>
-        <div class='flex gap-8 text-lg justify-center py-12 text-slate-300 max-md:flex-col'>
+        <div class='flex gap-8 text-lg justify-center py-12 text-slate-300 max-md:flex-col hide'>
           <a
             href='https://github.com/fraxxio/'
             rel='noopener nofollow'
@@ -101,7 +101,7 @@
           action='https://api.web3forms.com/submit'
           method='POST'
           id='form'
-          class='needs-validation'
+          class='needs-validation hide'
           data-astro-reload
           novalidate
         >
@@ -233,6 +233,17 @@
     },
     { once: true }
   );
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  });
+
+  const hiddenElements = document.querySelectorAll(".hide");
+  hiddenElements.forEach((element) => observer.observe(element));
 </script>
 
 <style>
@@ -251,5 +262,24 @@
       rgba(244, 168, 54, 0.3) 30%,
       #0e1030 44%
     );
+  }
+
+  .hide {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(50%);
+    transition: all 800ms;
+  }
+
+  .show {
+    filter: blur(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion) {
+    .hide {
+      transition: none;
+    }
   }
 </style>

@@ -5,12 +5,10 @@ import Typescript from "../components/badges/Typescript.astro";
 import NextJS from "../components/badges/NextJS.astro";
 import { Image } from "astro:assets";
 
-const { featured, title, description, tags, thumbnail, slug } = Astro.props;
+const { title, description, tags, thumbnail, slug } = Astro.props;
 ---
 
-<div
-  class={` border-b-2 border-black cursor-pointer  mb-16 ${featured && "col-span-2 max-[1580px]:col-span-1"} `}
->
+<div class={` border-b-2 border-black cursor-pointer mb-16 `}>
   <a href={`/projects/${slug}`}>
     <div class='overflow-hidden border-2 border-black rounded-md'>
       <Image

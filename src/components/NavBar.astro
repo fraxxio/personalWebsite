@@ -1,5 +1,5 @@
 <nav
-  class='bg-white bg-opacity-15 shadow-md backdrop-blur-md fixed right-1/2 translate-x-1/2 top-3 rounded-3xl z-50 flex items-center justify-between p-3 px-4 mix-blend-difference border border-white border-opacity-25 container max-[650px]:max-w-[90%]'
+  class='bg-white bg-opacity-15 shadow-md backdrop-blur-md fixed top-3 rounded-3xl z-[100] flex items-center justify-between p-3 px-4 mix-blend-difference border border-white border-opacity-25 container max-[650px]:max-w-[90%]'
 >
   <a href='/#home' class='font-semibold text-2xl max-[520px]:text-xl text-white'
     >{`< dev.Rokas />`}</a
@@ -52,3 +52,31 @@
     }
   });
 </script>
+
+<style>
+  @keyframes fade-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px) translateX(-12%);
+      right: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) translateX(50%);
+      right: 50%;
+    }
+  }
+  nav {
+    opacity: 0;
+    right: 50%;
+    transform: translateX(50%);
+    position: fixed;
+    animation: fade-down 0.5s forwards;
+    animation-delay: 400ms;
+  }
+  @media (prefers-reduced-motion) {
+    nav {
+      animation: none;
+    }
+  }
+</style>
