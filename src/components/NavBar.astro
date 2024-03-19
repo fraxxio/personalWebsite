@@ -11,6 +11,7 @@
   </ul>
   <button class='min-[520px]:hidden cursor-pointer mix-blend-difference fill-white' id='navBtn'>
     <svg
+      id='open'
       xmlns='http://www.w3.org/2000/svg'
       width='28'
       height='28'
@@ -20,13 +21,32 @@
       stroke-width='2.5'
       stroke-linecap='round'
       stroke-linejoin='round'
-      ><line x1='3' x2='21' y1='6' y2='6'></line><line x1='3' x2='21' y1='12' y2='12'></line><line
+    >
+      <line x1='3' x2='21' y1='6' y2='6'></line><line x1='3' x2='21' y1='12' y2='12'></line><line
         x1='3'
         x2='21'
         y1='18'
-        y2='18'></line></svg
-    ></button
-  >
+        y2='18'
+      >
+      </line>
+    </svg>
+    <svg
+      id='close'
+      xmlns='http://www.w3.org/2000/svg'
+      width='28'
+      height='28'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='white'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      class='hidden'
+    >
+      <path d='M18 6 6 18'></path>
+      <path d='m6 6 12 12'></path>
+    </svg>
+  </button>
 </nav>
 <ul
   class='flex gap-4 font-semibold text-lg min-[520px]:hidden fixed flex-col right-[50%] translate-x-[50%] border border-opacity-15 border-white rounded-3xl z-[1] p-4 backdrop-blur-md w-[50%] text-center top-[-11rem] duration-300 mix-blend-difference text-white'
@@ -39,16 +59,22 @@
 
 <script>
   const btn = document.getElementById("navBtn") as HTMLElement;
+  const open = document.getElementById("open") as HTMLElement;
+  const close = document.getElementById("close") as HTMLElement;
   const NavBar = document.getElementById("navBar") as HTMLElement;
   let isOpen = false;
 
   btn.addEventListener("click", () => {
     if (isOpen) {
       NavBar.classList.replace("top-[5rem]", "top-[-11rem]");
+      open.classList.remove("hidden");
+      close.classList.add("hidden");
       isOpen = false;
     } else {
       NavBar.classList.replace("top-[-11rem]", "top-[5rem]");
       isOpen = true;
+      open.classList.add("hidden");
+      close.classList.remove("hidden");
     }
   });
 </script>
