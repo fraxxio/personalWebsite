@@ -4,6 +4,7 @@
     tags: ["FrontEnd", "NextJS", "Typescript"]
     thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: false
+    github: https://github.com/fraxxio/MockSocial
 ---
 
 Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
