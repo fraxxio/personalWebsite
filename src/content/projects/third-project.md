@@ -5,6 +5,7 @@
     thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: false
     github: https://github.com/fraxxio/MockSocial
+    layout: ../../layouts/ProjectLayout.astro
 ---
 
 Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum

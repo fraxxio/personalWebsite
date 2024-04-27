@@ -11,6 +11,7 @@ const projectCollection = defineCollection({
       featured: z.boolean(),
       website: z.string().optional(),
       github: z.string(),
+      layout: z.string(),
     }),
 });
 

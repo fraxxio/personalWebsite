@@ -3,27 +3,46 @@ const { frontmatter } = Astro.props;
 ---
 
 <html>
+  <div class='fade'></div>
   <div class='wrapper'>
+    <button id='btn'>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='24'
+        height='24'
+        viewBox='0 0 24 24'
+        fill='none'
+        stroke='currentColor'
+        stroke-width='2'
+        stroke-linecap='round'
+        stroke-linejoin='round'><path d='m12 19-7-7 7-7'></path><path d='M19 12H5'></path></svg
+      >
+      Go back
+    </button>
     <h1>{frontmatter.title}</h1>
     <p>{frontmatter.description}</p>
     <div class='links'>
-      <a target='_blank' rel='noopener noreferrer' href={frontmatter.website}>
-        Visit live website
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          class='w-[18px] h-[18px]'
-          viewBox='0 0 24 24'
-          fill='none'
-          stroke='currentColor'
-          stroke-width='2'
-          stroke-linecap='round'
-          stroke-linejoin='round'
-        >
-          <path d='M15 3h6v6'></path>
-          <path d='M10 14 21 3'></path>
-          <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path>
-        </svg>
-      </a>
+      {
+        frontmatter.website && (
+          <a target='_blank' rel='noopener noreferrer' href={frontmatter.website}>
+            Visit live website
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              class='w-[18px] h-[18px]'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='2'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+            >
+              <path d='M15 3h6v6' />
+              <path d='M10 14 21 3' />
+              <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
+            </svg>
+          </a>
+        )
+      }
       <a target='_blank' rel='noopener noreferrer' href={frontmatter.github}>
         Github Repo
         <svg
@@ -55,13 +74,46 @@ const { frontmatter } = Astro.props;
       flex-direction: column;
       align-items: center;
       padding-bottom: 3rem;
+      position: relative;
     }
     .links {
       display: flex;
       align-items: center;
       gap: 2rem;
     }
-
+    .fade {
+      width: 100%;
+      height: 50vh;
+      position: absolute;
+      top: 0;
+      left: -50%;
+      transform: translateX(50%);
+      z-index: -1;
+      background: radial-gradient(
+        circle at 49% 0%,
+        rgba(255, 255, 0, 1) 0%,
+        rgba(0, 19, 212, 0.61) 14%,
+        rgba(0, 34, 212, 0.47) 17%,
+        rgba(238, 130, 238, 0) 44%
+      );
+    }
+    #btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition-duration: 100ms;
+      border-bottom: 2px solid transparent;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    #btn svg {
+      width: 18px;
+      height: 18px;
+    }
+    #btn:hover {
+      border-bottom: 2px solid black;
+    }
     h1 {
       text-decoration: none;
       font-size: 2.2rem;
@@ -81,9 +133,17 @@ const { frontmatter } = Astro.props;
       transition-duration: 200ms;
     }
     a:hover {
-      color: rgb(64, 172, 240);
+      filter: invert(1);
     }
   </style>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+    const btn = document.getElementById('btn') as HTMLButtonElement;
+    btn.addEventListener('click', () => goBack());
+  </script>
 
 
 </html>
