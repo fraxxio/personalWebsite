@@ -1,6 +1,6 @@
 ---
-    title: Abomination
-    description: Generate fake social media post screenshots. Yeah thats true.
+    title: beFriendly
+    description: Generate fake social media post screenshots. 
     tags: ["FrontEnd", "NextJS", "Typescript"]
     thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: false
