@@ -1,5 +1,5 @@
 ---
-import SecondaryBtn from "../components/SecondaryBtn.astro";
+import SecondaryBtn from '../components/SecondaryBtn.astro';
 ---
 
 <section id='aboutme' class='relative'>
@@ -9,20 +9,29 @@ import SecondaryBtn from "../components/SecondaryBtn.astro";
         Who am I?
       </h1>
       <p class='text-lg max-md:text-base hide'>
-        My name is Rokas and I am a front-end web developer, designer based in Lithuania. I do
-        freelancing for a living and study at the same time.
+        My name is Rokas and I am a <b>self-taught web developer</b> with about <b
+          >2-3 years of hands-on experience</b
+        > in creating web applications. My goal in software engineering is not to be a "frameworker"
+        that only knows React for example but a true engineer that can solve problems in variety of languages,
+        because languages and frameworks are just a tool.
       </p>
       <div class='h-px bg-black w-full my-8'></div>
       <div class='flex items-center gap-8 max-sm:flex-col hide'>
-        <p class='text-lg max-md:text-base'>Currently studying software engineering in</p>
+        <ul class='text-lg max-md:text-base list-disc list-inside'>
+          <li>Pursuing a Bachelor's degree in Software Engineering.</li>
+          <li>
+            Completed second semester with a scholarship for outstanding academic performance.
+          </li>
+        </ul>
         <img src='/VT.png' alt='University logo' loading='lazy' />
       </div>
       <div class='h-px bg-black w-full my-8'></div>
       <h2 class='text-2xl font-semibold pb-3 max-md:text-xl hide'>I specialize in</h2>
       <p class='hide'>
-        Creating distinctive websites that has good user experience and performs well. For
-        development I use React or Next.Js. I also create websites in Webflow and Wix. For UI/UX
-        design I use Figma.
+        Creating web applications using tools from <b>React</b> ecosystem. These are the technologies
+        I use for most of my projects: <b>React, Next, Tailwind, Node.js, Typescript, Zod, Git.</b> In
+        addition, I have exposure in back-end technologies like: <b>ASP.NET</b> and <b>Express.js</b
+        >
       </p>
       <div class='hide'>
         <SecondaryBtn />
@@ -61,11 +70,11 @@ import SecondaryBtn from "../components/SecondaryBtn.astro";
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        entry.target.classList.add('show');
       }
     });
   });
 
-  const hiddenElements = document.querySelectorAll(".hide");
+  const hiddenElements = document.querySelectorAll('.hide');
   hiddenElements.forEach((element) => observer.observe(element));
 </script>

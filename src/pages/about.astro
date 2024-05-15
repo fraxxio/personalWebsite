@@ -3,12 +3,57 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title='About Me'>
-  <main class='container mx-auto mt-40 h-full px-4'>
-    <h1>More about me</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse fuga vero, beatae possimus
-      saepe pariatur aliquid aspernatur iure quibusdam ullam similique est eaque animi inventore
-      delectus eveniet. Pariatur, sint quis!
-    </p>
+  <div class='gradientTop w-full absolute top-0 h-[50vh] -z-10'></div>
+  <div class='gradientBottom w-full absolute bottom-0 h-[50vh] -z-10'></div>
+  <main class='container mx-auto mt-40 h-full px-4 text-center max-w-[50rem]'>
+    <h1 class='text-2xl font-semibold pb-4'>More about me</h1>
+    <div class='flex flex-col items-center gap-8 text-lg'>
+      <p>
+        Hi, my name is Rokas. I'm a self-taught web developer with about 2-3 years of hands-on
+        experience in creating web applications. I have been learning programming since high-school
+        and also attended "Jaunųjų informatikų akademija" for 2 years. Since the start of my
+        programming journey I have been passioned about front-end and that's the career path I'm
+        parsuing today.
+      </p>
+      <p>
+        Currently I have the most knowledge with <b>React</b> ecosystem because of its popularity and
+        job opportunities, although I don't limit myself to just React or front-end and planning try
+        Svelte or Go. My goal in software engineering is not to be a "frameworker" that only knows React
+        for example but a true engineer that can solve problems in variety of languages, because language
+        is just a tool. <br /> As for my back-end experience I have created an <b>API</b> with
+        <b>ASP.NET MVC</b> that performs CRUD operations. In addition, I have made a <b
+          >Express.js</b
+        > server that handles a matchmaking system that I made with <b>Socket.io</b>.
+      </p>
+      <p>
+        Along with skills in <b>React</b>, <b>Next</b>, <b>Tailwind</b>, <b>Express</b>, or <b
+          >.NET</b
+        >, I am very punctual and excel in time management, enabling me to efficiently handle
+        multiple projects and meet deadlines. I can adapt to various environments, making me a
+        versatile and reliable team member. <br /> I am passionate about the software engineering sphere
+        and always look for new things to learn or try out. I am excited to experiment with new technologies
+        or frameworks and constantly seek ways to become more efficient and faster in development. For
+        instance, I use <b>VIM motions</b> to write code faster and more efficiently.
+      </p>
+    </div>
   </main>
 </Layout>
+
+<style>
+  .gradientTop {
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.07) 16%,
+      rgba(0, 173, 212, 0.45) 79%,
+      rgba(85, 255, 0, 0.58) 100%
+    );
+  }
+  .gradientBottom {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.07) 16%,
+      rgba(144, 212, 0, 0.4) 79%,
+      rgba(0, 14, 255, 0.58) 100%
+    );
+  }
+</style>
