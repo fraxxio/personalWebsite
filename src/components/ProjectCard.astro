@@ -1,10 +1,45 @@
 ---
-import FrontEnd from "../components/badges/FrontEnd.astro";
-import Tailwind from "../components/badges/Tailwind.astro";
-import Typescript from "../components/badges/Typescript.astro";
-import NextJS from "../components/badges/NextJS.astro";
-import { Image } from "astro:assets";
+import FrontEnd from '../components/badges/FrontEnd.astro';
+import Tailwind from '../components/badges/Tailwind.astro';
+import Typescript from '../components/badges/Typescript.astro';
+import NextJS from '../components/badges/NextJS.astro';
+import Artillery from '../components/badges/Artillery.astro';
+import Auth from './badges/Auth.astro';
+import Docker from './badges/Docker.astro';
+import Drizzle from './badges/Drizzle.astro';
+import Express from './badges/Express.astro';
+import FullStack from './badges/FullStack.astro';
+import OpenAI from './badges/OpenAI.astro';
+import Zod from './badges/Zod.astro';
+import React from './badges/React.astro';
+import Socket from './badges/Socket.astro';
+import SQLite from './badges/SQLite.astro';
+import Uploadthing from './badges/Uploadthing.astro';
+import reCAPTCHA from './badges/reCAPTCHA.astro';
+import shadcn from './badges/shadcn.astro';
 
+import { Image } from 'astro:assets';
+
+const tagsMap: Record<string, any> = {
+  FrontEnd: FrontEnd,
+  Typescript: Typescript,
+  Tailwind: Tailwind,
+  NextJS: NextJS,
+  Artillery: Artillery,
+  Auth: Auth,
+  Docker: Docker,
+  Drizzle: Drizzle,
+  Express: Express,
+  FullStack: FullStack,
+  OpenAI: OpenAI,
+  React: React,
+  reCAPTCHA: reCAPTCHA,
+  shadcn: shadcn,
+  Socket: Socket,
+  SQLite: SQLite,
+  Uploadthing: Uploadthing,
+  Zod: Zod,
+};
 const { title, description, tags, thumbnail, slug } = Astro.props;
 ---
 
@@ -21,10 +56,12 @@ const { title, description, tags, thumbnail, slug } = Astro.props;
       />
     </div>
     <div class='flex gap-3 pt-3 flex-wrap'>
-      <FrontEnd />
-      <Typescript />
-      <Tailwind />
-      <NextJS />
+      {
+        tags.map((tag: string) => {
+          const Component = tagsMap[tag];
+          return Component ? <Component /> : <p>{tag}</p>;
+        })
+      }
       <div class='circle' id='circle'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -68,21 +105,21 @@ const { title, description, tags, thumbnail, slug } = Astro.props;
 </div>
 
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const circle = document.getElementById("circle") as HTMLElement;
-    const projectElements = document.querySelectorAll("#project1");
+  window.addEventListener('DOMContentLoaded', () => {
+    const circle = document.getElementById('circle') as HTMLElement;
+    const projectElements = document.querySelectorAll('#project1');
 
-    document.addEventListener("mousemove", (e) => {
+    document.addEventListener('mousemove', (e) => {
       circle.style.transform = `translate(${e.clientX - 45}px, ${e.clientY - 45}px)`;
     });
 
     projectElements.forEach((project) => {
-      project.addEventListener("mouseenter", () => {
-        circle.style.opacity = "1";
+      project.addEventListener('mouseenter', () => {
+        circle.style.opacity = '1';
       });
 
-      project.addEventListener("mouseleave", () => {
-        circle.style.opacity = "0";
+      project.addEventListener('mouseleave', () => {
+        circle.style.opacity = '0';
       });
     });
   });

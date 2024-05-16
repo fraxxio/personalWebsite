@@ -1,7 +1,7 @@
 ---
     title: MockSocial
     description: Generate fake social media post screenshots with ease!
-    tags: ["FrontEnd", "NextJS", "Tailwind", "Typescript"]
+    tags: ["FrontEnd", "NextJS", "Tailwind", "Typescript", "Zod", "shadcn", "Uploadthing"]
     thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: false
     website: https://mocksocial.vercel.app/
