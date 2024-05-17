@@ -5,9 +5,9 @@
     >{`< dev.Rokas />`}</a
   >
   <ul class='flex gap-4 font-semibold text-lg max-[520px]:hidden text-white'>
-    <li><a href='/#aboutme'>About Me</a></li>
-    <li><a href='/#projects'>Projects </a></li>
-    <li><a href='/#contacts'>Contacts</a></li>
+    <li class='hover:-translate-y-0.5 duration-200'><a href='/#aboutme'>About Me</a></li>
+    <li class='hover:-translate-y-0.5 duration-200'><a href='/#projects'>Projects </a></li>
+    <li class='hover:-translate-y-0.5 duration-200'><a href='/#contacts'>Contacts</a></li>
   </ul>
   <button class='min-[520px]:hidden cursor-pointer mix-blend-difference fill-white' id='navBtn'>
     <svg
@@ -58,23 +58,23 @@
 </ul>
 
 <script>
-  const btn = document.getElementById("navBtn") as HTMLElement;
-  const open = document.getElementById("open") as HTMLElement;
-  const close = document.getElementById("close") as HTMLElement;
-  const NavBar = document.getElementById("navBar") as HTMLElement;
+  const btn = document.getElementById('navBtn') as HTMLElement;
+  const open = document.getElementById('open') as HTMLElement;
+  const close = document.getElementById('close') as HTMLElement;
+  const NavBar = document.getElementById('navBar') as HTMLElement;
   let isOpen = false;
 
-  btn.addEventListener("click", () => {
+  btn.addEventListener('click', () => {
     if (isOpen) {
-      NavBar.classList.replace("top-[5rem]", "top-[-11rem]");
-      open.classList.remove("hidden");
-      close.classList.add("hidden");
+      NavBar.classList.replace('top-[5rem]', 'top-[-11rem]');
+      open.classList.remove('hidden');
+      close.classList.add('hidden');
       isOpen = false;
     } else {
-      NavBar.classList.replace("top-[-11rem]", "top-[5rem]");
+      NavBar.classList.replace('top-[-11rem]', 'top-[5rem]');
       isOpen = true;
-      open.classList.add("hidden");
-      close.classList.remove("hidden");
+      open.classList.add('hidden');
+      close.classList.remove('hidden');
     }
   });
 </script>

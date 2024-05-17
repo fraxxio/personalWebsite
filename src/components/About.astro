@@ -33,8 +33,30 @@ import SecondaryBtn from '../components/SecondaryBtn.astro';
         addition, I have exposure in back-end technologies like: <b>ASP.NET</b> and <b>Express.js</b
         >
       </p>
-      <div class='hide'>
-        <SecondaryBtn />
+      <div class='flex items-center gap-8 pt-12 max-[370px]:flex-col max-[370px]:items-start'>
+        <div class='hide'>
+          <SecondaryBtn />
+        </div>
+        <a
+          href='/CV.pdf'
+          download
+          class='flex items-center gap-1 font-semibold text-lg duration-300 hover:text-gray-700 hover:-translate-y-0.5'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='16'
+            height='16'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='3'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            ><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'></path><polyline
+              points='7 10 12 15 17 10'></polyline><line x1='12' x2='12' y1='15' y2='3'></line></svg
+          >
+          Download CV
+        </a>
       </div>
     </div>
   </div>

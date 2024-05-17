@@ -5,7 +5,7 @@
     thumbnail: ./thumbnails/befriendlyThumbnail.png
     featured: false
     github: https://github.com/fraxxio/beFriendly
-    website: https://befriendly.onrender.com/
+    website: https://befriendly.devrokas.com/
     layout: ../../layouts/ProjectLayout.astro
 ---
 

@@ -5,7 +5,7 @@
     thumbnail: ./thumbnails/CineradarThumbnail.png
     featured: true
     github: https://github.com/fraxxio/CineRadarAI
-    website: https://cineradar.vercel.app/
+    website: https://cineradar.devrokas.com/
     layout: ../../layouts/ProjectLayout.astro
 ---
 

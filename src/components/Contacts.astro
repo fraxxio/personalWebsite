@@ -75,7 +75,8 @@
             LinkedIn</a
           >
           <a
-            href=''
+            href='/CV.pdf'
+            download
             class='flex items-center gap-1 duration-300 hover:text-white hover:-translate-y-0.5'
           >
             <svg
@@ -162,31 +163,31 @@
 </section>
 
 <script>
-  const CopyBtn = document.getElementById("CopyBtn") as HTMLElement;
-  const tooltip = document.getElementById("tooltipText") as HTMLElement;
+  const CopyBtn = document.getElementById('CopyBtn') as HTMLElement;
+  const tooltip = document.getElementById('tooltipText') as HTMLElement;
 
-  CopyBtn.addEventListener("click", function () {
-    navigator.clipboard.writeText("webdevrokas@gmail.com");
-    tooltip.textContent = "Copied";
+  CopyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText('webdevrokas@gmail.com');
+    tooltip.textContent = 'Copied';
 
     setTimeout(() => {
-      tooltip.textContent = "Copy to clipboard";
+      tooltip.textContent = 'Copy to clipboard';
     }, 2000);
   });
 
   //WebForms \/ \/ \/
 
   document.addEventListener(
-    "DOMContentLoaded",
+    'DOMContentLoaded',
     () => {
-      const form = document.getElementById("form") as HTMLFormElement;
-      const result = document.getElementById("result") as HTMLElement;
+      const form = document.getElementById('form') as HTMLFormElement;
+      const result = document.getElementById('result') as HTMLElement;
 
-      form.addEventListener("submit", function (e) {
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
-        form.classList.add("was-validated");
+        form.classList.add('was-validated');
         if (!form.checkValidity()) {
-          const invalidElements = form.querySelectorAll(":invalid");
+          const invalidElements = form.querySelectorAll(':invalid');
           if (invalidElements.length > 0) {
             const firstInvalidElement = invalidElements[0] as HTMLElement;
             firstInvalidElement.focus();
@@ -197,36 +198,36 @@
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
 
-        result.innerHTML = "Sending...";
+        result.innerHTML = 'Sending...';
 
-        fetch("https://api.web3forms.com/submit", {
-          method: "POST",
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
           body: json,
         })
           .then(async (response) => {
             let json = await response.json();
             if (response.status == 200) {
-              result.classList.add("text-green-500");
+              result.classList.add('text-green-500');
               result.innerHTML = json.message;
             } else {
               console.log(response);
-              result.classList.add("text-red-500");
+              result.classList.add('text-red-500');
               result.innerHTML = json.message;
             }
           })
           .catch((error) => {
             console.log(error);
-            result.innerHTML = "Something went wrong!";
+            result.innerHTML = 'Something went wrong!';
           })
           .then(function () {
             form.reset();
-            form.classList.remove("was-validated");
+            form.classList.remove('was-validated');
             setTimeout(() => {
-              result.style.display = "none";
+              result.style.display = 'none';
             }, 5000);
           });
       });
@@ -237,12 +238,12 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        entry.target.classList.add('show');
       }
     });
   });
 
-  const hiddenElements = document.querySelectorAll(".hide");
+  const hiddenElements = document.querySelectorAll('.hide');
   hiddenElements.forEach((element) => observer.observe(element));
 </script>
 

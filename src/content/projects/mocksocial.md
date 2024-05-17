@@ -4,7 +4,7 @@
     tags: ["FrontEnd", "NextJS", "Tailwind", "Typescript", "Zod", "shadcn", "Uploadthing"]
     thumbnail: ./thumbnails/MockSocialThumbnail.png
     featured: false
-    website: https://mocksocial.vercel.app/
+    website: https://mocksocial.devrokas.com/
     github: https://github.com/fraxxio/MockSocial
     layout: ../../layouts/ProjectLayout.astro
 ---

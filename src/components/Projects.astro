@@ -28,6 +28,7 @@ const featured = await getEntry('projects', 'cineradar');
         tags={featured.data.tags}
         thumbnail={featured.data.thumbnail}
         slug={featured.slug}
+        link={featured.data.website}
       />
     </div>
     <div class='hide grid grid-cols-2 gap-x-8 max-[1580px]:grid-cols-1'>
@@ -41,6 +42,7 @@ const featured = await getEntry('projects', 'cineradar');
                 tags={project.data.tags}
                 thumbnail={project.data.thumbnail}
                 slug={project.slug}
+                link={project.data.website}
               />
             )
         )
