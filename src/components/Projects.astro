@@ -1,15 +1,15 @@
 ---
-import ProjectCard from '../components/ProjectCard.astro';
-import { getCollection, getEntry } from 'astro:content';
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection, getEntry } from "astro:content";
 
-const projects = await getCollection('projects');
-const featured = await getEntry('projects', 'cineradar');
+const projects = await getCollection("projects");
+const featured = await getEntry("projects", "cineradar");
 ---
 
-<section id='projects' class='mb-40 mt-20 max-[1580px]:mt-0'>
-  <div class='scroller py-40 max-sm:py-20' data-speed='slow'>
+<section id="projects" class="mb-40 mt-20 max-[1580px]:mt-0">
+  <div class="scroller py-40 max-sm:py-20" data-speed="slow">
     <ul
-      class='tag-list scroller__inner text-8xl font-semibold uppercase hide max-md:text-6xl max-sm:text-4xl'
+      class="tag-list scroller__inner text-8xl font-semibold uppercase hide max-md:text-6xl max-sm:text-4xl"
     >
       <li>Projects</li>
       <li>Projects</li>
@@ -20,18 +20,22 @@ const featured = await getEntry('projects', 'cineradar');
       <li>Projects</li>
     </ul>
   </div>
-  <div class='mx-[20%] max-md:mx-4'>
-    <div class='hide col-span-2 max-[1580px]:col-span-1'>
-      <ProjectCard
-        title={featured.data.title}
-        description={featured.data.description}
-        tags={featured.data.tags}
-        thumbnail={featured.data.thumbnail}
-        slug={featured.slug}
-        link={featured.data.website}
-      />
+  <div class="mx-[20%] max-md:mx-4">
+    <div class="hide col-span-2 max-[1580px]:col-span-1">
+      {
+        featured && (
+          <ProjectCard
+            title={featured.data.title}
+            description={featured.data.description}
+            tags={featured.data.tags}
+            thumbnail={featured.data.thumbnail}
+            slug={featured.id}
+            link={featured.data.website}
+          />
+        )
+      }
     </div>
-    <div class='hide grid grid-cols-2 gap-x-8 max-[1580px]:grid-cols-1'>
+    <div class="hide grid grid-cols-2 gap-x-8 max-[1580px]:grid-cols-1">
       {
         projects.map(
           (project) =>
@@ -41,10 +45,10 @@ const featured = await getEntry('projects', 'cineradar');
                 description={project.data.description}
                 tags={project.data.tags}
                 thumbnail={project.data.thumbnail}
-                slug={project.slug}
+                slug={project.id}
                 link={project.data.website}
               />
-            )
+            ),
         )
       }
     </div>
@@ -52,20 +56,22 @@ const featured = await getEntry('projects', 'cineradar');
 </section>
 
 <script>
-  const scroller = document.querySelector('.scroller') as HTMLElement;
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const scroller = document.querySelector(".scroller") as HTMLElement;
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     addAnimation();
   }
 
   function addAnimation() {
-    scroller.setAttribute('data-animated', 'true');
+    scroller.setAttribute("data-animated", "true");
 
-    const scrollerInner = scroller.querySelector('.scroller__inner') as HTMLElement;
+    const scrollerInner = scroller.querySelector(
+      ".scroller__inner",
+    ) as HTMLElement;
     const scrollerContent = Array.from(scrollerInner.children);
 
     scrollerContent.forEach((item) => {
       const duplicatedItem = item.cloneNode(true) as HTMLElement;
-      duplicatedItem.setAttribute('aria-hidden', 'true');
+      duplicatedItem.setAttribute("aria-hidden", "true");
       scrollerInner.appendChild(duplicatedItem);
     });
   }
@@ -73,12 +79,12 @@ const featured = await getEntry('projects', 'cineradar');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('show');
+        entry.target.classList.add("show");
       }
     });
   });
 
-  const hiddenElements = document.querySelectorAll('.hide');
+  const hiddenElements = document.querySelectorAll(".hide");
   hiddenElements.forEach((element) => observer.observe(element));
 </script>
 
@@ -94,11 +100,11 @@ const featured = await getEntry('projects', 'cineradar');
     gap: 3rem;
   }
 
-  .scroller[data-animated='true'] {
+  .scroller[data-animated="true"] {
     overflow: hidden;
   }
 
-  .scroller[data-animated='true'] .scroller__inner {
+  .scroller[data-animated="true"] .scroller__inner {
     width: max-content;
     flex-wrap: nowrap;
     animation: scroll linear;
