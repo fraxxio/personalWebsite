@@ -1,137 +1,51 @@
 ---
-import ProjectCard from "../components/ProjectCard.astro";
-import { getCollection, getEntry } from "astro:content";
+import ProjectCard from './ProjectCard.astro';
+import { getCollection } from 'astro:content';
 
-const projects = await getCollection("projects");
-const featured = await getEntry("projects", "cineradar");
+const projects = (await getCollection('projects')).sort(
+  (a, b) => Number(b.data.featured) - Number(a.data.featured),
+);
+const marquee = Array(8).fill('Projects ✦').join(' ');
 ---
 
-<section id="projects" class="mb-40 mt-20 max-[1580px]:mt-0">
-  <div class="scroller py-40 max-sm:py-20" data-speed="slow">
-    <ul
-      class="tag-list scroller__inner text-8xl font-semibold uppercase hide max-md:text-6xl max-sm:text-4xl"
-    >
-      <li>Projects</li>
-      <li>Projects</li>
-      <li>Projects</li>
-      <li>Projects</li>
-      <li>Projects</li>
-      <li>Projects</li>
-      <li>Projects</li>
-    </ul>
+<section id='projects' class='scroll-mt-24 py-8 sm:py-12'>
+  <h2 class='sr-only'>Projects</h2>
+  <div class='marquee border-y-2 border-ink bg-surface py-4' aria-hidden='true'>
+    <div class='marquee-track text-4xl font-bold uppercase opacity-40 sm:text-6xl'>
+      <span>{marquee}&nbsp;</span>
+      <span>{marquee}&nbsp;</span>
+    </div>
   </div>
-  <div class="mx-[20%] max-md:mx-4">
-    <div class="hide col-span-2 max-[1580px]:col-span-1">
-      {
-        featured && (
-          <ProjectCard
-            title={featured.data.title}
-            description={featured.data.description}
-            tags={featured.data.tags}
-            thumbnail={featured.data.thumbnail}
-            slug={featured.id}
-            link={featured.data.website}
-          />
-        )
-      }
-    </div>
-    <div class="hide grid grid-cols-2 gap-x-8 max-[1580px]:grid-cols-1">
-      {
-        projects.map(
-          (project) =>
-            !project.data.featured && (
-              <ProjectCard
-                title={project.data.title}
-                description={project.data.description}
-                tags={project.data.tags}
-                thumbnail={project.data.thumbnail}
-                slug={project.id}
-                link={project.data.website}
-              />
-            ),
-        )
-      }
-    </div>
+
+  <div class='mx-auto max-w-6xl divide-y-2 divide-line px-4'>
+    {
+      projects.map((project, index) => (
+        <ProjectCard project={project} index={index} total={projects.length} />
+      ))
+    }
   </div>
 </section>
 
-<script>
-  const scroller = document.querySelector(".scroller") as HTMLElement;
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    addAnimation();
-  }
-
-  function addAnimation() {
-    scroller.setAttribute("data-animated", "true");
-
-    const scrollerInner = scroller.querySelector(
-      ".scroller__inner",
-    ) as HTMLElement;
-    const scrollerContent = Array.from(scrollerInner.children);
-
-    scrollerContent.forEach((item) => {
-      const duplicatedItem = item.cloneNode(true) as HTMLElement;
-      duplicatedItem.setAttribute("aria-hidden", "true");
-      scrollerInner.appendChild(duplicatedItem);
-    });
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
-  });
-
-  const hiddenElements = document.querySelectorAll(".hide");
-  hiddenElements.forEach((element) => observer.observe(element));
-</script>
-
 <style>
-  .scroller {
-    width: 100%;
-  }
-
-  .scroller__inner {
-    padding-block: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
-  }
-
-  .scroller[data-animated="true"] {
+  .marquee {
     overflow: hidden;
+    white-space: nowrap;
   }
-
-  .scroller[data-animated="true"] .scroller__inner {
-    width: max-content;
-    flex-wrap: nowrap;
-    animation: scroll linear;
-    animation-timeline: scroll(root);
+  .marquee-track {
+    display: inline-flex;
   }
-
-  @keyframes scroll {
+  /* Marquee driven by page scroll; static text where unsupported. */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .marquee-track {
+        animation: marquee linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+  @keyframes marquee {
     to {
-      transform: translate(calc(-50% - 0.5rem));
-    }
-  }
-
-  .hide {
-    opacity: 0;
-    transition: all 800ms;
-  }
-
-  .show {
-    opacity: 1;
-  }
-
-  @media (prefers-reduced-motion) {
-    .scroller {
-      animation: none;
-    }
-    .hide {
-      transition: none;
+      transform: translateX(-50%);
     }
   }
 </style>

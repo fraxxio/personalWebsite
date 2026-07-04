@@ -1,148 +1,87 @@
 ---
-import FrontEnd from '../components/badges/FrontEnd.astro';
-import Tailwind from '../components/badges/Tailwind.astro';
-import Typescript from '../components/badges/Typescript.astro';
-import NextJS from '../components/badges/NextJS.astro';
-import Artillery from '../components/badges/Artillery.astro';
-import Auth from './badges/Auth.astro';
-import Docker from './badges/Docker.astro';
-import Drizzle from './badges/Drizzle.astro';
-import Express from './badges/Express.astro';
-import FullStack from './badges/FullStack.astro';
-import OpenAI from './badges/OpenAI.astro';
-import Zod from './badges/Zod.astro';
-import React from './badges/React.astro';
-import Socket from './badges/Socket.astro';
-import SQLite from './badges/SQLite.astro';
-import Uploadthing from './badges/Uploadthing.astro';
-import reCAPTCHA from './badges/reCAPTCHA.astro';
-import shadcn from './badges/shadcn.astro';
-
 import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
-const tagsMap: Record<string, any> = {
-  FrontEnd: FrontEnd,
-  Typescript: Typescript,
-  Tailwind: Tailwind,
-  NextJS: NextJS,
-  Artillery: Artillery,
-  Auth: Auth,
-  Docker: Docker,
-  Drizzle: Drizzle,
-  Express: Express,
-  FullStack: FullStack,
-  OpenAI: OpenAI,
-  React: React,
-  reCAPTCHA: reCAPTCHA,
-  shadcn: shadcn,
-  Socket: Socket,
-  SQLite: SQLite,
-  Uploadthing: Uploadthing,
-  Zod: Zod,
-};
-const { title, description, tags, thumbnail, slug, link } = Astro.props;
+interface Props {
+  project: CollectionEntry<'projects'>;
+  index: number;
+  total: number;
+}
+
+const { project, index, total } = Astro.props;
+const { title, description, tags, thumbnail, website, github, featured } = project.data;
+const counter = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+const href = `/projects/${project.id}`;
 ---
 
-<div class='border-b-2 border-black cursor-pointer mb-16'>
-  <a href={`/projects/${slug}`}>
-    <div class='overflow-hidden border-2 border-black rounded-md'>
-      <Image
-        id='project1'
-        src={thumbnail}
-        alt={`${title} thumbnail`}
-        width='1100'
-        height='1000'
-        class='hover:animate-hover-project object-cover w-full'
-      />
-    </div>
-    <div class='flex gap-3 pt-3 flex-wrap'>
+<article class='grid items-center gap-8 py-14 sm:py-20 md:grid-cols-2 md:gap-14' data-reveal>
+  <div class:list={[index % 2 === 1 && 'md:order-2']}>
+    <div class='flex items-center gap-3'>
+      <span class='h-0.5 w-10 bg-ink'></span>
+      <span class='sec-tag text-muted'>{counter}</span>
       {
-        tags.map((tag: string) => {
-          const Component = tagsMap[tag];
-          return Component ? <Component /> : <p>{tag}</p>;
-        })
+        featured && (
+          <span class='inline-flex items-center rounded-full border-2 border-black bg-accent px-3 py-1.5 text-xs font-bold text-black'>
+            ★ Featured
+          </span>
+        )
       }
-      <div class='circle' id='circle'>
+    </div>
+    <h3 class='mt-4 text-4xl font-bold sm:text-5xl'>
+      <a href={href} class='underline-offset-8 transition hover:underline'>{title}</a>
+    </h3>
+    <div class='mt-5 flex flex-wrap gap-2'>
+      {tags.map((tag: string) => <span class='chip'>{tag}</span>)}
+    </div>
+    <p class='mt-5 max-w-md text-lg text-muted'>{description}</p>
+    <div class='mt-8 flex flex-wrap items-center gap-x-6 gap-y-4'>
+      <a href={href} class='btn btn-solid'>
+        Case study
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          width='24'
-          height='24'
+          width='18'
+          height='18'
           viewBox='0 0 24 24'
           fill='none'
           stroke='currentColor'
-          stroke-width='2'
+          stroke-width='2.5'
           stroke-linecap='round'
           stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
         >
-      </div>
-    </div>
-    <div class='flex items-center justify-between'>
-      <div>
-        <h2 class='pt-4 font-semibold text-3xl max-md:text-xl'>{title}</h2>
-        <p class='text-lg max-md:text-base pb-4'>{description}</p>
-      </div>
+      </a>
+      {
+        website && (
+          <a
+            href={website}
+            target='_blank'
+            rel='noopener noreferrer'
+            class='font-bold underline-offset-4 transition hover:text-muted hover:underline'
+          >
+            Live demo ↗
+          </a>
+        )
+      }
       <a
-        href={link}
-        rel='noopener nofollow'
+        href={github}
         target='_blank'
-        class='p-4 max-md:p-3 border-2 border-black rounded-md hover:bg-black hover:text-white transition'
+        rel='noopener noreferrer'
+        class='font-bold underline-offset-4 transition hover:text-muted hover:underline'
       >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          class='w-[24px] h-[24px] max-md:w-[18px] max-md:h-[18px]'
-          viewBox='0 0 24 24'
-          fill='none'
-          stroke='currentColor'
-          stroke-width='2'
-          stroke-linecap='round'
-          stroke-linejoin='round'
-          ><path d='M15 3h6v6'></path><path d='M10 14 21 3'></path><path
-            d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path></svg
-        >
+        Source ↗
       </a>
     </div>
+  </div>
+  <a
+    href={href}
+    tabindex='-1'
+    aria-hidden='true'
+    class='group block overflow-hidden rounded-2xl border-2 border-ink bg-surface shadow-hard-lg'
+  >
+    <Image
+      src={thumbnail}
+      alt=''
+      width={1100}
+      class='w-full object-cover transition duration-500 group-hover:scale-[1.03]'
+    />
   </a>
-</div>
-
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const circle = document.getElementById('circle') as HTMLElement;
-    const projectElements = document.querySelectorAll('#project1');
-
-    document.addEventListener('mousemove', (e) => {
-      circle.style.transform = `translate(${e.clientX - 45}px, ${e.clientY - 45}px)`;
-    });
-
-    projectElements.forEach((project) => {
-      project.addEventListener('mouseenter', () => {
-        circle.style.opacity = '1';
-      });
-
-      project.addEventListener('mouseleave', () => {
-        circle.style.opacity = '0';
-      });
-    });
-  });
-</script>
-
-<style>
-  .circle {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    backdrop-filter: invert(1) grayscale(1);
-    -webkit-backdrop-filter: invert(1) grayscale(1);
-    transform: translate(0, 0);
-    transition-duration: 0.2s;
-    transition-timing-function: ease-out;
-    z-index: 5;
-    opacity: 0;
-  }
-</style>
+</article>

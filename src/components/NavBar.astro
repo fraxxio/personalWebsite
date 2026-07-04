@@ -1,108 +1,107 @@
-<nav
-  class='bg-white bg-opacity-15 shadow-md backdrop-blur-md fixed top-3 rounded-3xl z-[100] flex items-center justify-between p-3 px-4 mix-blend-difference border border-white border-opacity-25 container max-[650px]:max-w-[90%]'
->
-  <a href='/#home' class='font-semibold text-2xl max-[520px]:text-xl text-white'
-    >{`< dev.Rokas />`}</a
+---
+const links = [
+  { href: '/#about', label: 'About' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<nav class='fixed inset-x-0 top-4 z-50 flex justify-center px-4' aria-label='Main'>
+  <div
+    class='flex w-full max-w-3xl items-center justify-between gap-4 rounded-full border-2 border-ink bg-surface py-2 pl-5 pr-2 shadow-hard'
   >
-  <ul class='flex gap-4 font-semibold text-lg max-[520px]:hidden text-white'>
-    <li class='hover:-translate-y-0.5 duration-200'><a href='/#aboutme'>About Me</a></li>
-    <li class='hover:-translate-y-0.5 duration-200'><a href='/#projects'>Projects </a></li>
-    <li class='hover:-translate-y-0.5 duration-200'><a href='/#contacts'>Contacts</a></li>
-  </ul>
-  <button class='min-[520px]:hidden cursor-pointer mix-blend-difference fill-white' id='navBtn'>
-    <svg
-      id='open'
-      xmlns='http://www.w3.org/2000/svg'
-      width='28'
-      height='28'
-      viewBox='0 0 28 28'
-      fill='none'
-      stroke='white'
-      stroke-width='2.5'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-    >
-      <line x1='3' x2='21' y1='6' y2='6'></line><line x1='3' x2='21' y1='12' y2='12'></line><line
-        x1='3'
-        x2='21'
-        y1='18'
-        y2='18'
+    <a href='/#home' class='text-lg font-bold'>{`< dev.Rokas />`}</a>
+    <div class='flex items-center gap-2'>
+      <ul class='hidden items-center gap-5 font-bold sm:flex'>
+        {
+          links.map(({ href, label }) => (
+            <li>
+              <a class='underline-offset-4 transition hover:text-muted hover:underline' href={href}>
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <button
+        id='theme-toggle'
+        aria-label='Toggle dark mode'
+        class='flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-accent text-black transition hover:-translate-y-0.5'
       >
-      </line>
-    </svg>
-    <svg
-      id='close'
-      xmlns='http://www.w3.org/2000/svg'
-      width='28'
-      height='28'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='white'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='hidden'
-    >
-      <path d='M18 6 6 18'></path>
-      <path d='m6 6 12 12'></path>
-    </svg>
-  </button>
+        <svg
+          class='dark:hidden'
+          xmlns='http://www.w3.org/2000/svg'
+          width='16'
+          height='16'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2.5'
+          stroke-linecap='round'
+          stroke-linejoin='round'><path d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'></path></svg
+        >
+        <svg
+          class='hidden dark:block'
+          xmlns='http://www.w3.org/2000/svg'
+          width='16'
+          height='16'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2.5'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          ><circle cx='12' cy='12' r='4'></circle><path
+            d='M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'
+          ></path></svg
+        >
+      </button>
+      <details id='mobile-menu' class='relative sm:hidden'>
+        <summary
+          class='flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full border-2 border-ink bg-surface [&::-webkit-details-marker]:hidden'
+        >
+          <span class='sr-only'>Menu</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='16'
+            height='16'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2.5'
+            stroke-linecap='round'
+            ><line x1='3' x2='21' y1='6' y2='6'></line><line x1='3' x2='21' y1='12' y2='12'
+            ></line><line x1='3' x2='21' y1='18' y2='18'></line></svg
+          >
+        </summary>
+        <ul
+          class='absolute right-0 top-12 w-44 rounded-2xl border-2 border-ink bg-surface p-2 font-bold shadow-hard'
+        >
+          {
+            links.map(({ href, label }) => (
+              <li>
+                <a class='block rounded-xl px-4 py-2 transition hover:bg-accent hover:text-black' href={href}>
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+    </div>
+  </div>
 </nav>
-<ul
-  class='flex gap-4 font-semibold text-lg min-[520px]:hidden fixed flex-col right-[50%] translate-x-[50%] border border-opacity-15 border-white rounded-3xl z-[1] p-4 backdrop-blur-md w-[50%] text-center top-[-11rem] duration-300 mix-blend-difference text-white'
-  id='navBar'
->
-  <li><a href='/#projects'>Projects</a></li>
-  <li><a href='/#aboutme'>About Me</a></li>
-  <li><a href='/#contacts'>Contacts</a></li>
-</ul>
 
 <script>
-  const btn = document.getElementById('navBtn') as HTMLElement;
-  const open = document.getElementById('open') as HTMLElement;
-  const close = document.getElementById('close') as HTMLElement;
-  const NavBar = document.getElementById('navBar') as HTMLElement;
-  let isOpen = false;
-
-  btn.addEventListener('click', () => {
-    if (isOpen) {
-      NavBar.classList.replace('top-[5rem]', 'top-[-11rem]');
-      open.classList.remove('hidden');
-      close.classList.add('hidden');
-      isOpen = false;
-    } else {
-      NavBar.classList.replace('top-[-11rem]', 'top-[5rem]');
-      isOpen = true;
-      open.classList.add('hidden');
-      close.classList.remove('hidden');
-    }
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const dark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    window.dispatchEvent(new CustomEvent('themechange'));
   });
-</script>
 
-<style>
-  @keyframes fade-down {
-    0% {
-      opacity: 0;
-      transform: translateY(-50px) translateX(-12%);
-      right: 0;
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) translateX(50%);
-      right: 50%;
-    }
-  }
-  nav {
-    opacity: 0;
-    right: 50%;
-    transform: translateX(50%);
-    position: fixed;
-    animation: fade-down 0.5s forwards;
-    animation-delay: 400ms;
-  }
-  @media (prefers-reduced-motion) {
-    nav {
-      animation: none;
-    }
-  }
-</style>
+  // Close the mobile menu when a link is picked.
+  const menu = document.getElementById('mobile-menu');
+  menu?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => menu.removeAttribute('open')),
+  );
+</script>

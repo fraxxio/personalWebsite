@@ -16,15 +16,36 @@ type Props = {
 };
 
 const { project } = Astro.props;
+const { title, description, tags, website, github } = project.data;
 const { Content } = await render(project);
 ---
 
-<Layout title={`${project.data.title} | Rokas`}>
-  <main class="container mx-auto mt-40">
-    <div
-      class="prose dark:prose-invert prose-h1:font-bold prose-h1:text-xl prose-a:text-blue-600 prose-p:text-justify prose-img:rounded-xl prose-headings:underline"
+<Layout title={`${title} | Rokas`} description={description}>
+  <main id='main' class='mx-auto w-full max-w-5xl px-4 pb-24 pt-36 sm:pt-44'>
+    <header class='flex flex-col items-center text-center'>
+      <a href='/#projects' class='sec-tag text-muted transition hover:text-ink'>← All projects</a>
+      <h1 class='mt-4 text-4xl font-bold sm:text-6xl'>{title}</h1>
+      <p class='mt-4 text-lg text-muted'>{description}</p>
+      <div class='mt-6 flex flex-wrap justify-center gap-2'>
+        {tags.map((tag: string) => <span class='chip'>{tag}</span>)}
+      </div>
+      <div class='mt-8 flex flex-wrap justify-center gap-4'>
+        {
+          website && (
+            <a href={website} target='_blank' rel='noopener noreferrer' class='btn btn-solid'>
+              Live website ↗
+            </a>
+          )
+        }
+        <a href={github} target='_blank' rel='noopener noreferrer' class='btn btn-outline'>
+          GitHub repo ↗
+        </a>
+      </div>
+    </header>
+    <article
+      class='prose mt-6 max-w-none dark:prose-invert prose-headings:no-underline prose-img:rounded-xl'
     >
       <Content />
-    </div>
+    </article>
   </main>
 </Layout>

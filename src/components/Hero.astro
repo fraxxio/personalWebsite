@@ -1,179 +1,114 @@
 ---
-import PrimaryBtn from "../components/PrimaryBtn.astro";
+import Dither from './Dither.astro';
 ---
 
-<header class='flex justify-center relative overflow-hidden' id='home'>
-  <div transition:persist id='grainedContainer'></div>
-  <div id='cursor-glow' class='max-[520px]:hidden cursor-glow'></div>
-  <div id='cursor-glow2' class='max-[520px]:hidden cursor-glow'></div>
-  <div id='cursor-glow3' class='max-[520px]:hidden cursor-glow'></div>
-  <div id='cursor-glow4' class='max-[520px]:hidden cursor-glow'></div>
-  <div class='absolute container text-center font-semibold pt-[15rem]'>
-    <p class='flex justify-center text-2xl pb-4 z-0 gap-2 max-md:text-xl max-sm:text-lg'>
-      <span id='hand' class='wave-animation animate-waving-hand cursor-pointer'>👋🏼 </span>
-      Hi, my name is Rokas
+<header id='home' class='px-4 pb-16 pt-36 sm:pt-44'>
+  <div class='mx-auto flex max-w-6xl flex-col items-center text-center'>
+    <p class='sec-tag fade-up text-muted' style='--d: 0ms'>
+      <span id='hand' class='inline-block'>👋🏼</span>&ensp;Hi, my name is Rokas
     </p>
     <h1
-      class='text-9xl max-lg:text-8xl max-md:text-7xl max-sm:text-6xl max-[550px]:text-5xl max-[380px]:text-3xl z-0'
+      class='fade-up mt-5 max-w-4xl text-4xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl'
+      style='--d: 120ms'
     >
-      I'm self-taught web developer that creates full-stack web apps
+      Self-taught full-stack developer building real, shipped web&nbsp;apps
     </h1>
-    <PrimaryBtn />
+    <div class='fade-up mt-9 flex flex-wrap justify-center gap-4' style='--d: 240ms'>
+      <a href='/#projects' class='btn btn-solid'>
+        View projects
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='18'
+          height='18'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2.5'
+          stroke-linecap='round'
+          stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
+        >
+      </a>
+      <a href='/CV.pdf' download class='btn btn-outline'>
+        Download CV
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='18'
+          height='18'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2.5'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          ><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'></path><polyline
+            points='7 10 12 15 17 10'></polyline><line x1='12' x2='12' y1='15' y2='3'></line></svg
+        >
+      </a>
+    </div>
+    <div
+      class='fade-up relative mt-16 h-[45vh] min-h-[300px] w-full overflow-hidden rounded-2xl border-2 border-ink shadow-hard-lg'
+      style='--d: 360ms'
+    >
+      <Dither
+        class='absolute inset-0'
+        shape='wave'
+        front='#161613'
+        back='#f2f0e9'
+        darkFront='#f5c518'
+        darkBack='#141414'
+        speed={0.35}
+        pxSize={2.5}
+      />
+      <span class='chip absolute bottom-4 left-4'>✦ Full-stack web apps</span>
+      <span class='chip absolute bottom-4 right-4 max-sm:hidden'>React · Next · TypeScript</span>
+    </div>
   </div>
-  <div id='gradient' class='h-20 w-full absolute bottom-0'></div>
 </header>
 
 <script>
-  import grained from "../lib/grained";
-  var options = {
-    animate: true,
-    patternWidth: 100,
-    patternHeight: 100,
-    grainOpacity: 0.13,
-    grainDensity: 1,
-    grainWidth: 1,
-    grainHeight: 1,
-  };
-
-  grained("#grainedContainer", options);
-
-  const header = document.getElementById("home") as HTMLElement;
-  const cursor = document.getElementById("cursor-glow") as HTMLElement;
-  const cursor2 = document.getElementById("cursor-glow2") as HTMLElement;
-  const cursor3 = document.getElementById("cursor-glow3") as HTMLElement;
-  const cursor4 = document.getElementById("cursor-glow4") as HTMLElement;
-
-  header.addEventListener("mousemove", (event) => {
-    const cursors = [cursor, cursor2, cursor3, cursor4];
-
-    const keyframesArray = cursors.map((cursor) => ({
-      transform: `translate(${event.clientX - cursor.offsetWidth / 2}px, ${event.clientY - cursor.offsetHeight / 2}px)`,
-    }));
-
-    cursors.forEach((cursor, index) => {
-      cursor.style.display = "block";
-      cursor.animate(keyframesArray[index], {
-        duration: 800 - 100 * index,
-        fill: "forwards",
-      });
-    });
-
-    if (event.target instanceof Element) {
-      const interactable = event.target.closest(".interactable");
-      const interacting = interactable !== null;
-
-      if (interacting) {
-        cursors.forEach((cursor) => {
-          cursor.style.display = "none";
-          ``;
-        });
-      } else {
-        cursors.forEach((cursor) => {
-          cursor.style.display = "block";
-        });
-      }
-    }
-  });
-
-  const hand = document.getElementById("hand") as HTMLElement;
-  hand.addEventListener("click", () => {
-    hand.classList.remove("wave-animation");
-    hand.classList.add("animate-ping");
-    setTimeout(() => {
-      hand.classList.remove("animate-ping");
-      hand.classList.add("wave-animation");
-    }, 1000);
+  // Little wave on click, as a nod to the old site.
+  const hand = document.getElementById('hand');
+  hand?.addEventListener('click', () => {
+    hand.classList.remove('animate-waving');
+    requestAnimationFrame(() => hand.classList.add('animate-waving'));
   });
 </script>
 
 <style>
-  #grainedContainer {
-    width: 100vw;
-    height: 105vh;
-    background: radial-gradient(
-      circle at 50% -20%,
-      rgba(68, 0, 255, 0.8) 5%,
-      rgba(244, 228, 54, 0.363) 30%,
-      rgba(248, 242, 242, 1) 60%
-    );
-    z-index: -1;
+  .fade-up {
+    opacity: 0;
+    animation: fade-up 700ms ease-out forwards;
+    animation-delay: var(--d, 0ms);
   }
-  #gradient {
-    background: linear-gradient(to top, #d1f1a0 0%, rgba(0, 0, 0, 0) 100%);
-  }
-  .cursor-glow {
-    display: none;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    position: absolute;
-    border: 2px solid rgba(0, 0, 0, 0.308);
-    top: 0;
-    left: 0;
-    z-index: 20;
-    pointer-events: none;
-  }
-
-  @keyframes wave {
-    0% {
-      transform: rotate(0deg);
-    }
-    10% {
-      transform: rotate(14deg);
-    }
-    20% {
-      transform: rotate(-8deg);
-    }
-    30% {
-      transform: rotate(14deg);
-    }
-    40% {
-      transform: rotate(-4deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-    60% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-  .wave-animation {
-    animation: wave 3s linear infinite;
-  }
-
   @keyframes fade-up {
-    0% {
+    from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
     }
-    100% {
+    to {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
   }
-
-  h1,
-  p {
-    opacity: 0; /* Set initial opacity to 0 */
+  #hand {
+    cursor: pointer;
   }
-
-  h1 {
-    animation: fade-up 800ms ease-out forwards;
-    animation-delay: 1s;
+  .animate-waving {
+    animation: wave 1s ease-in-out;
   }
-
-  p {
-    animation: fade-up 800ms ease-out forwards;
-    animation-delay: 700ms;
+  @keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(16deg); }
+    30% { transform: rotate(-8deg); }
+    45% { transform: rotate(16deg); }
+    60% { transform: rotate(-4deg); }
+    75% { transform: rotate(10deg); }
   }
-
-  @media (prefers-reduced-motion) {
-    h1,
-    p {
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up,
+    .animate-waving {
       animation: none;
+      opacity: 1;
     }
   }
 </style>

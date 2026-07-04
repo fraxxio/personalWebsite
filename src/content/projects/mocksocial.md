@@ -6,7 +6,6 @@
     featured: false
     website: https://mocksocial.devrokas.com/
     github: https://github.com/fraxxio/MockSocial
-    layout: ../../layouts/ProjectLayout.astro
 ---
 
 <h1 style="text-align: center; text-decoration: none; font-size: 2rem;">Project overview</h1>

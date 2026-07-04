@@ -6,7 +6,6 @@
     featured: true
     github: https://github.com/fraxxio/CineRadarAI
     website: https://cineradar.devrokas.com/
-    layout: ../../layouts/ProjectLayout.astro
 ---
 
 <h1 style="text-align: center; text-decoration: none; font-size: 2rem; padding-top: 4rem;">
