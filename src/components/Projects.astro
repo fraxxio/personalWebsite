@@ -1,51 +1,36 @@
 ---
 import ProjectCard from './ProjectCard.astro';
+import Container from './ui/Container.astro';
+import Divider from './ui/Divider.astro';
+import Heading from './ui/Heading.astro';
+import Section from './ui/Section.astro';
+import Text from './ui/Text.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => Number(b.data.featured) - Number(a.data.featured),
 );
-const marquee = Array(8).fill('Projects ✦').join(' ');
 ---
 
-<section id='projects' class='scroll-mt-24 py-8 sm:py-12'>
-  <h2 class='sr-only'>Projects</h2>
-  <div class='marquee border-y-2 border-ink bg-surface py-4' aria-hidden='true'>
-    <div class='marquee-track text-4xl font-bold uppercase opacity-40 sm:text-6xl'>
-      <span>{marquee}&nbsp;</span>
-      <span>{marquee}&nbsp;</span>
+<Section id='projects'>
+  <Container>
+    <div class='max-w-3xl' data-reveal>
+      <Text as='span' variant='label' tone='muted'>Selected work</Text>
+      <Heading as='h2' class='mt-4'>Projects</Heading>
+      <Text variant='lead' class='mt-4'>
+        Real applications, designed, built and shipped end to end.
+      </Text>
     </div>
-  </div>
 
-  <div class='mx-auto max-w-6xl divide-y-2 divide-line px-4'>
-    {
-      projects.map((project, index) => (
-        <ProjectCard project={project} index={index} total={projects.length} />
-      ))
-    }
-  </div>
-</section>
-
-<style>
-  .marquee {
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .marquee-track {
-    display: inline-flex;
-  }
-  /* Marquee driven by page scroll; static text where unsupported. */
-  @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .marquee-track {
-        animation: marquee linear both;
-        animation-timeline: scroll(root);
+    <div class='mt-8'>
+      {
+        projects.map((project, index) => (
+          <>
+            {index > 0 && <Divider />}
+            <ProjectCard project={project} index={index} total={projects.length} />
+          </>
+        ))
       }
-    }
-  }
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
-</style>
+    </div>
+  </Container>
+</Section>

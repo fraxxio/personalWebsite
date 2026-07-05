@@ -1,0 +1,15 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<hr
+  class:list={[
+    'h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent',
+    className,
+  ]}
+  aria-hidden='true'
+/>

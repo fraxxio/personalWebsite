@@ -1,0 +1,18 @@
+---
+// Page section. Alternate surface={true} to create background rhythm
+// without visible separators.
+interface Props {
+  id?: string;
+  surface?: boolean;
+  class?: string;
+}
+
+const { id, surface = false, class: className } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['scroll-mt-28 py-24 sm:py-32', surface && 'bg-surface', className]}
+>
+  <slot />
+</section>

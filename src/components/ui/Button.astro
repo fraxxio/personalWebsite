@@ -1,0 +1,35 @@
+---
+// Renders an <a> when href is given, a <button> otherwise.
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'button'> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'md' | 'sm';
+  class?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  download?: boolean | string;
+}
+
+const { variant = 'primary', size = 'md', class: className, ...rest }: Props = Astro.props;
+const Element = rest.href ? 'a' : 'button';
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-full font-medium transition duration-200 ease-out';
+const sizes = {
+  md: 'px-6 py-3 text-sm',
+  sm: 'px-4 py-2 text-sm',
+};
+const variants = {
+  primary:
+    'bg-gradient-to-b from-[#ffd83d] to-accent text-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] hover:-translate-y-0.5 hover:shadow-soft active:translate-y-0 active:shadow-none',
+  secondary:
+    'border bg-surface-elevated/60 text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-strong hover:bg-surface-elevated',
+  ghost: 'text-secondary hover:bg-white/5 hover:text-primary',
+};
+---
+
+<Element class:list={[base, sizes[size], variants[variant], className]} {...rest as any}>
+  <slot />
+</Element>

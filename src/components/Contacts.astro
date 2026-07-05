@@ -1,24 +1,27 @@
 ---
 import Dither from "./Dither.astro";
+import Button from "./ui/Button.astro";
+import Container from "./ui/Container.astro";
+import Heading from "./ui/Heading.astro";
+import Text from "./ui/Text.astro";
 
-// ponytail: footer is #141414 in both themes, matching the reference design.
-const socialClass =
-  "inline-flex items-center gap-1.5 rounded-full border-2 border-accent px-4 py-2 text-sm font-bold text-[#f4f4ef] transition hover:bg-accent hover:text-black";
+const field =
+  "w-full rounded-field border bg-white/[0.03] px-4 py-3.5 text-primary placeholder:text-muted transition duration-200 focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/20";
 ---
 
-<section id="contact" class="border-t-2 border-ink bg-[#141414] text-[#f4f4ef]">
-  <div
-    class="mx-auto grid max-w-6xl gap-14 px-4 pb-6 pt-20 sm:pt-28 md:grid-cols-2"
-  >
+<section id="contact" class="scroll-mt-28 border-t border-subtle bg-surface">
+  <Container class="grid gap-14 pb-8 pt-24 sm:pt-32 md:grid-cols-2">
     <div data-reveal>
-      <h2 class="text-5xl font-bold sm:text-6xl">Let’s talk</h2>
-      <p class="mt-4 text-lg opacity-75">
-        Ready to build something? Let’s get started.
-      </p>
-      <p class="sec-tag mt-12 text-accent">Get in touch</p>
+      <Heading as="h2" size="display">Let’s talk</Heading>
+      <Text variant="lead" class="mt-4"
+        >Ready to build something? Let’s get started.</Text
+      >
+      <Text as="span" variant="label" tone="muted" class="mt-14 block"
+        >Get in touch</Text
+      >
       <button
         id="copy-email"
-        class="mt-2 inline-flex items-center gap-3 border-b-2 border-transparent pb-0.5 text-xl font-bold transition hover:border-accent sm:text-2xl"
+        class="mt-3 inline-flex items-center gap-3 text-xl font-medium text-primary transition duration-200 hover:text-accent sm:text-2xl"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +30,7 @@ const socialClass =
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2.5"
+          stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
           ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path
@@ -41,19 +44,23 @@ const socialClass =
         role="status"
         class="mt-2 block h-5 text-sm text-accent"></span>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a
+        <Button
           href="https://github.com/fraxxio/"
           target="_blank"
           rel="noopener noreferrer"
-          class={socialClass}>GitHub ↗</a
+          variant="secondary"
+          size="sm">GitHub ↗</Button
         >
-        <a
+        <Button
           href="https://www.linkedin.com/in/rokasleonavi%C4%8Dius/"
           target="_blank"
           rel="noopener noreferrer"
-          class={socialClass}>LinkedIn ↗</a
+          variant="secondary"
+          size="sm">LinkedIn ↗</Button
         >
-        <a href="/CV.pdf" download class={socialClass}>CV ↓</a>
+        <Button href="/CV.pdf" download variant="secondary" size="sm"
+          >CV ↓</Button
+        >
       </div>
     </div>
 
@@ -84,7 +91,7 @@ const socialClass =
           placeholder="Full name"
           required
           name="name"
-          class="form-field"
+          class={field}
         />
       </div>
       <div>
@@ -95,7 +102,7 @@ const socialClass =
           placeholder="Email address"
           name="email"
           required
-          class="form-field"
+          class={field}
         />
       </div>
       <div>
@@ -105,50 +112,29 @@ const socialClass =
           name="message"
           required
           placeholder="Your message…"
-          class="form-field h-36"></textarea>
+          class:list={[field, "h-36 resize-none"]}></textarea>
       </div>
-      <button
-        type="submit"
-        class="rounded-xl border-2 border-accent bg-accent px-4 py-3.5 text-center font-bold text-black transition hover:-translate-y-0.5"
-      >
-        Send message ⇢
-      </button>
-      <div id="result" role="status" class="text-center"></div>
+      <Button type="submit" class="w-full">Send message</Button>
+      <div id="result" role="status" class="text-center text-sm"></div>
     </form>
-  </div>
+  </Container>
 
-  <div class="relative h-52 sm:h-72" data-reveal>
+  <div class="relative mt-12 h-52 sm:h-72" data-reveal>
     <Dither
-      class="absolute inset-0"
+      class="absolute inset-0 opacity-30"
       shape="wave"
-      front="#f5c518"
-      back="#141414"
+      front="#00ffb3"
+      back="#1f1f1f"
       speed={0.25}
       pxSize={3}
     />
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-surface to-transparent"
+      aria-hidden="true"
+    >
+    </div>
   </div>
 </section>
-
-<style>
-  .form-field {
-    width: 100%;
-    border: 2px solid #3a3a3a;
-    border-radius: 0.75rem;
-    background: transparent;
-    padding: 0.875rem 1rem;
-    font-weight: 700;
-    color: #f4f4ef;
-    outline: none;
-    transition: border-color 200ms ease;
-  }
-  .form-field::placeholder {
-    color: #8a8a82;
-    font-weight: 400;
-  }
-  .form-field:focus {
-    border-color: #f5c518;
-  }
-</style>
 
 <script>
   const copyBtn = document.getElementById("copy-email");

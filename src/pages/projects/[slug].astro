@@ -1,10 +1,14 @@
 ---
-import { render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import Heading from '../../components/ui/Heading.astro';
+import Text from '../../components/ui/Text.astro';
 
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from 'astro:content';
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getCollection('projects');
   return projects.map((project) => ({
     params: { slug: project.id },
     props: { project },
@@ -12,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 type Props = {
-  project: CollectionEntry<"projects">;
+  project: CollectionEntry<'projects'>;
 };
 
 const { project } = Astro.props;
@@ -21,29 +25,27 @@ const { Content } = await render(project);
 ---
 
 <Layout title={`${title} | Rokas`} description={description}>
-  <main id='main' class='mx-auto w-full max-w-5xl px-4 pb-24 pt-36 sm:pt-44'>
+  <main id='main' class='mx-auto w-full max-w-5xl px-6 pb-24 pt-36 sm:pt-44'>
     <header class='flex flex-col items-center text-center'>
-      <a href='/#projects' class='sec-tag text-muted transition hover:text-ink'>← All projects</a>
-      <h1 class='mt-4 text-4xl font-bold sm:text-6xl'>{title}</h1>
-      <p class='mt-4 text-lg text-muted'>{description}</p>
+      <a
+        href='/#projects'
+        class='text-xs font-medium uppercase tracking-[0.18em] text-muted transition duration-200 hover:text-primary'
+        >← All projects</a
+      >
+      <Heading as='h1' size='display' class='mt-5'>{title}</Heading>
+      <Text variant='lead' class='mt-4 max-w-2xl'>{description}</Text>
       <div class='mt-6 flex flex-wrap justify-center gap-2'>
-        {tags.map((tag: string) => <span class='chip'>{tag}</span>)}
+        {tags.map((tag: string) => <Badge>{tag}</Badge>)}
       </div>
-      <div class='mt-8 flex flex-wrap justify-center gap-4'>
-        {
-          website && (
-            <a href={website} target='_blank' rel='noopener noreferrer' class='btn btn-solid'>
-              Live website ↗
-            </a>
-          )
-        }
-        <a href={github} target='_blank' rel='noopener noreferrer' class='btn btn-outline'>
+      <div class='mt-9 flex flex-wrap justify-center gap-4'>
+        {website && <Button href={website} target='_blank' rel='noopener noreferrer'>Live website ↗</Button>}
+        <Button href={github} target='_blank' rel='noopener noreferrer' variant='secondary'>
           GitHub repo ↗
-        </a>
+        </Button>
       </div>
     </header>
     <article
-      class='prose mt-6 max-w-none dark:prose-invert prose-headings:no-underline prose-img:rounded-xl'
+      class='prose prose-invert mt-10 max-w-none prose-headings:tracking-tight prose-a:text-accent prose-a:underline-offset-4 prose-pre:rounded-lg prose-pre:border prose-pre:bg-surface prose-img:rounded-lg prose-img:border'
     >
       <Content />
     </article>

@@ -1,6 +1,7 @@
 ---
 import NavBar from '../components/NavBar.astro';
 import Footer from '../components/Footer.astro';
+import '../styles/main.css';
 
 interface Props {
   title: string;
@@ -14,7 +15,7 @@ const {
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang='en' class='dark'>
   <head>
     <meta charset='UTF-8' />
     <meta name='description' content={description} />
@@ -22,19 +23,12 @@ const {
     <link rel='icon' type='image/svg+xml' href='/icon.svg' sizes='any' />
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
-    <script is:inline>
-      // Set theme before first paint to avoid a flash of the wrong theme.
-      const theme =
-        localStorage.getItem('theme') ??
-        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.classList.toggle('dark', theme === 'dark');
-    </script>
     <noscript><style>[data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
   </head>
-  <body class='flex min-h-screen flex-col bg-paper text-ink antialiased'>
+  <body class='flex min-h-screen flex-col bg-background font-sans text-primary antialiased'>
     <a
       href='#main'
-      class='sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[999] focus:rounded-full focus:border-2 focus:border-ink focus:bg-accent focus:px-4 focus:py-2 focus:font-bold focus:text-black'
+      class='sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[999] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:font-medium focus:text-neutral-950'
       >Skip to content</a
     >
     <NavBar />
@@ -44,22 +38,7 @@ const {
 </html>
 
 <style is:global>
-  @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
-
   :root {
-    --paper: #f2f0e9;
-    --surface: #fbfaf6;
-    --ink: #161613;
-    --muted: #66665e;
-    --shadow-c: rgba(22, 22, 19, 0.16);
-    color-scheme: light;
-  }
-  html.dark {
-    --paper: #141414;
-    --surface: #1c1c1a;
-    --ink: #f4f4ef;
-    --muted: #98988f;
-    --shadow-c: rgba(0, 0, 0, 0.55);
     color-scheme: dark;
   }
 
@@ -67,38 +46,24 @@ const {
     scroll-behavior: smooth;
   }
   body {
-    transition: background-color 300ms ease, color 300ms ease;
+    font-feature-settings: 'cv11', 'ss01';
   }
   ::selection {
     background: #f5c518;
-    color: #141414;
+    color: #171717;
   }
   :focus-visible {
     outline: 2px solid #f5c518;
     outline-offset: 2px;
-  }
-
-  .btn {
-    @apply inline-flex items-center gap-2 rounded-full border-2 border-ink px-6 py-3 font-bold transition duration-200 hover:-translate-y-0.5 hover:shadow-hard active:translate-y-0 active:shadow-none;
-  }
-  .btn-solid {
-    @apply bg-ink text-paper;
-  }
-  .btn-outline {
-    @apply bg-surface text-ink;
-  }
-  .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-surface px-3 py-1.5 text-xs font-bold;
-  }
-  .sec-tag {
-    @apply font-mono text-[11px] font-bold uppercase tracking-[0.16em];
+    border-radius: 4px;
   }
 
   /* Scroll reveal — elements opt in with data-reveal, revealed by the observer below. */
   [data-reveal] {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 700ms ease, transform 700ms ease;
+    transform: translateY(16px);
+    transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   [data-reveal].revealed {
     opacity: 1;

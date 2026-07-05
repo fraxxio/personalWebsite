@@ -1,12 +1,10 @@
 ---
-// Animated dithering panel (@paper-design/shaders). Colors switch with the
-// theme; animation pauses entirely for prefers-reduced-motion users.
+// Animated dithering panel (@paper-design/shaders). Animation pauses
+// entirely for prefers-reduced-motion users.
 interface Props {
   shape?: 'simplex' | 'warp' | 'dots' | 'wave' | 'ripple' | 'swirl' | 'sphere';
   front: string;
   back: string;
-  darkFront?: string;
-  darkBack?: string;
   pxSize?: number;
   speed?: number;
   class?: string;
@@ -16,8 +14,6 @@ const {
   shape = 'simplex',
   front,
   back,
-  darkFront = front,
-  darkBack = back,
   pxSize = 2.5,
   speed = 0.5,
   class: className,
@@ -29,8 +25,6 @@ const {
   data-shape={shape}
   data-front={front}
   data-back={back}
-  data-dark-front={darkFront}
-  data-dark-back={darkBack}
   data-px-size={pxSize}
   data-speed={speed}
   aria-hidden='true'
@@ -50,11 +44,12 @@ const {
 
   document.querySelectorAll<HTMLElement>('.dither-mount').forEach((el) => {
     const d = el.dataset;
-    const uniforms = () => {
-      const dark = document.documentElement.classList.contains('dark');
-      return {
-        u_colorFront: getShaderColorFromString(dark ? d.darkFront : d.front),
-        u_colorBack: getShaderColorFromString(dark ? d.darkBack : d.back),
+    new ShaderMount(
+      el,
+      ditheringFragmentShader,
+      {
+        u_colorFront: getShaderColorFromString(d.front),
+        u_colorBack: getShaderColorFromString(d.back),
         u_shape: DitheringShapes[(d.shape ?? 'simplex') as keyof typeof DitheringShapes],
         u_type: DitheringTypes['4x4'],
         u_pxSize: Number(d.pxSize),
@@ -67,15 +62,9 @@ const {
         u_offsetY: 0,
         u_worldWidth: 0,
         u_worldHeight: 0,
-      };
-    };
-    const mount = new ShaderMount(
-      el,
-      ditheringFragmentShader,
-      uniforms(),
+      },
       undefined,
       prefersReduced ? 0 : Number(d.speed),
     );
-    window.addEventListener('themechange', () => mount.setUniforms(uniforms()));
   });
 </script>

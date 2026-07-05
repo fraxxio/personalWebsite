@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import Badge from './ui/Badge.astro';
+import Button from './ui/Button.astro';
+import Text from './ui/Text.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -12,61 +15,47 @@ const { project, index, total } = Astro.props;
 const { title, description, tags, thumbnail, website, github, featured } = project.data;
 const counter = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
 const href = `/projects/${project.id}`;
+
+const textLink =
+  'text-sm font-medium text-secondary underline-offset-4 transition duration-200 hover:text-primary hover:underline';
 ---
 
-<article class='grid items-center gap-8 py-14 sm:py-20 md:grid-cols-2 md:gap-14' data-reveal>
+<article class='grid items-center gap-10 py-16 sm:py-24 md:grid-cols-2 md:gap-16' data-reveal>
   <div class:list={[index % 2 === 1 && 'md:order-2']}>
     <div class='flex items-center gap-3'>
-      <span class='h-0.5 w-10 bg-ink'></span>
-      <span class='sec-tag text-muted'>{counter}</span>
-      {
-        featured && (
-          <span class='inline-flex items-center rounded-full border-2 border-black bg-accent px-3 py-1.5 text-xs font-bold text-black'>
-            ★ Featured
-          </span>
-        )
-      }
+      <Text as='span' variant='label' tone='muted'>{counter}</Text>
+      {featured && <Badge active>Featured</Badge>}
     </div>
-    <h3 class='mt-4 text-4xl font-bold sm:text-5xl'>
-      <a href={href} class='underline-offset-8 transition hover:underline'>{title}</a>
+    <h3 class='mt-5 text-3xl font-semibold tracking-tight text-primary sm:text-4xl'>
+      <a href={href} class='transition duration-200 hover:text-accent'>{title}</a>
     </h3>
     <div class='mt-5 flex flex-wrap gap-2'>
-      {tags.map((tag: string) => <span class='chip'>{tag}</span>)}
+      {tags.map((tag: string) => <Badge>{tag}</Badge>)}
     </div>
-    <p class='mt-5 max-w-md text-lg text-muted'>{description}</p>
-    <div class='mt-8 flex flex-wrap items-center gap-x-6 gap-y-4'>
-      <a href={href} class='btn btn-solid'>
+    <Text class='mt-5 max-w-md'>{description}</Text>
+    <div class='mt-9 flex flex-wrap items-center gap-x-6 gap-y-4'>
+      <Button href={href}>
         Case study
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          width='18'
-          height='18'
+          width='16'
+          height='16'
           viewBox='0 0 24 24'
           fill='none'
           stroke='currentColor'
-          stroke-width='2.5'
+          stroke-width='2'
           stroke-linecap='round'
           stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
         >
-      </a>
+      </Button>
       {
         website && (
-          <a
-            href={website}
-            target='_blank'
-            rel='noopener noreferrer'
-            class='font-bold underline-offset-4 transition hover:text-muted hover:underline'
-          >
+          <a href={website} target='_blank' rel='noopener noreferrer' class={textLink}>
             Live demo ↗
           </a>
         )
       }
-      <a
-        href={github}
-        target='_blank'
-        rel='noopener noreferrer'
-        class='font-bold underline-offset-4 transition hover:text-muted hover:underline'
-      >
+      <a href={github} target='_blank' rel='noopener noreferrer' class={textLink}>
         Source ↗
       </a>
     </div>
@@ -75,13 +64,13 @@ const href = `/projects/${project.id}`;
     href={href}
     tabindex='-1'
     aria-hidden='true'
-    class='group block overflow-hidden rounded-2xl border-2 border-ink bg-surface shadow-hard-lg'
+    class='group block overflow-hidden rounded-card border shadow-soft transition duration-300 hover:border-strong'
   >
     <Image
       src={thumbnail}
       alt=''
       width={1100}
-      class='w-full object-cover transition duration-500 group-hover:scale-[1.03]'
+      class='w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]'
     />
   </a>
 </article>

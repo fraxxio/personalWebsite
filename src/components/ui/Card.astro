@@ -1,0 +1,34 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'div'> {
+  as?: 'div' | 'article' | 'a';
+  href?: string;
+  interactive?: boolean;
+  padding?: boolean;
+  class?: string;
+}
+
+const {
+  as: Tag = 'article',
+  interactive = false,
+  padding = true,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Element = rest.href ? 'a' : Tag;
+---
+
+<Element
+  class:list={[
+    'rounded-card border bg-gradient-to-b from-surface-elevated to-surface shadow-card',
+    padding && 'p-6 sm:p-8',
+    interactive &&
+      'transition duration-300 ease-out hover:-translate-y-0.5 hover:border-strong',
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Element>

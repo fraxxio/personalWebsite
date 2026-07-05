@@ -1,0 +1,34 @@
+---
+// Body copy and small labels. 'label' renders the uppercase eyebrow style.
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'p'> {
+  as?: 'p' | 'span' | 'div';
+  variant?: 'body' | 'lead' | 'label';
+  tone?: 'primary' | 'secondary' | 'muted';
+  class?: string;
+}
+
+const {
+  as: Tag = 'p',
+  variant = 'body',
+  tone = 'secondary',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants = {
+  body: 'text-base leading-7',
+  lead: 'text-lg leading-8',
+  label: 'text-xs font-medium uppercase tracking-[0.18em]',
+};
+const tones = {
+  primary: 'text-primary',
+  secondary: 'text-secondary',
+  muted: 'text-muted',
+};
+---
+
+<Tag class:list={[variants[variant], tones[tone], className]} {...rest}>
+  <slot />
+</Tag>
