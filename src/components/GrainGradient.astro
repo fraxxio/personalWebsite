@@ -1,0 +1,99 @@
+---
+// Animated grain gradient panel (@paper-design/shaders). Animation pauses
+// entirely for prefers-reduced-motion users.
+interface Props {
+  shape?:
+    | "wave"
+    | "dots"
+    | "truchet"
+    | "corners"
+    | "ripple"
+    | "blob"
+    | "sphere";
+  colors: string[];
+  colorBack: string;
+  softness?: number;
+  intensity?: number;
+  noise?: number;
+  speed?: number;
+  class?: string;
+  scale?: number;
+}
+
+const {
+  shape = "wave",
+  colors,
+  colorBack,
+  softness = 0.5,
+  intensity = 0.5,
+  noise = 0.5,
+  speed = 0.5,
+  scale = 1,
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={["grain-gradient-mount", className]}
+  data-shape={shape}
+  data-colors={colors.join(",")}
+  data-color-back={colorBack}
+  data-softness={softness}
+  data-intensity={intensity}
+  data-noise={noise}
+  data-scale={scale}
+  data-speed={speed}
+  aria-hidden="true"
+>
+</div>
+
+<script>
+  import {
+    ShaderMount,
+    grainGradientFragmentShader,
+    getShaderColorFromString,
+    getShaderNoiseTexture,
+    GrainGradientShapes,
+  } from "@paper-design/shaders";
+
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const noiseTexture = getShaderNoiseTexture();
+  await noiseTexture?.decode();
+
+  document
+    .querySelectorAll<HTMLElement>(".grain-gradient-mount")
+    .forEach((el) => {
+      const d = el.dataset;
+      const colors = (d.colors ?? "").split(",").map(getShaderColorFromString);
+      new ShaderMount(
+        el,
+        grainGradientFragmentShader,
+        {
+          u_colorBack: getShaderColorFromString(d.colorBack),
+          u_colors: colors,
+          u_colorsCount: colors.length,
+          u_softness: Number(d.softness),
+          u_intensity: Number(d.intensity),
+          u_noise: Number(d.noise),
+          u_shape:
+            GrainGradientShapes[
+              (d.shape ?? "wave") as keyof typeof GrainGradientShapes
+            ],
+          u_noiseTexture: noiseTexture,
+          u_fit: 0,
+          u_scale: Number(d.scale),
+          u_rotation: 0,
+          u_originX: 0.5,
+          u_originY: 0.5,
+          u_offsetX: 0,
+          u_offsetY: 0,
+          u_worldWidth: 0,
+          u_worldHeight: 0,
+        },
+        undefined,
+        prefersReduced ? 0 : Number(d.speed),
+      );
+    });
+</script>
