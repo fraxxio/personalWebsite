@@ -12,7 +12,12 @@ interface Props {
 }
 
 const { project, index, total } = Astro.props;
-const { title, description, tags, thumbnail, website, github, featured } = project.data;
+const { title, description, tags, thumbnail, secondaryThumbnail, website, github, featured } =
+  project.data;
+const stackRotate =
+  index % 2 === 0
+    ? 'group-hover:-translate-x-[4%] group-hover:-rotate-3'
+    : 'group-hover:translate-x-[4%] group-hover:rotate-3';
 const counter = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
 const href = `/projects/${project.id}`;
 
@@ -60,17 +65,36 @@ const textLink =
       </a>
     </div>
   </div>
-  <a
-    href={href}
-    tabindex='-1'
-    aria-hidden='true'
-    class='group block overflow-hidden rounded-card border shadow-soft transition duration-300 hover:border-strong'
-  >
-    <Image
-      src={thumbnail}
-      alt=''
-      width={1100}
-      class='w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]'
-    />
+  <a href={href} tabindex='-1' aria-hidden='true' class='group relative block'>
+    <div
+      class='overflow-hidden rounded-card border shadow-soft transition duration-300 group-hover:border-strong'
+    >
+      <Image
+        src={thumbnail}
+        alt=''
+        width={1100}
+        class:list={[
+          'w-full object-cover',
+          !secondaryThumbnail && 'transition duration-500 ease-out group-hover:scale-[1.02]',
+        ]}
+      />
+    </div>
+    {
+      secondaryThumbnail && (
+        <div
+          class:list={[
+            'pointer-events-none absolute inset-0 -translate-y-8 scale-[1.06] opacity-0 transition-all duration-500 ease-out group-hover:translate-y-[6%] group-hover:scale-100 group-hover:opacity-100 motion-reduce:transition-none',
+            stackRotate,
+          ]}
+        >
+          <Image
+            src={secondaryThumbnail}
+            alt=''
+            width={1100}
+            class='w-full rounded-card border object-cover shadow-soft'
+          />
+        </div>
+      )
+    }
   </a>
 </article>

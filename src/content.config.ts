@@ -13,6 +13,7 @@ const projectCollection = defineCollection({
       description: z.string(),
       tags: z.array(z.string()),
       thumbnail: image(),
+      secondaryThumbnail: image().optional(),
       featured: z.boolean(),
       website: z.string().optional(),
       github: z.string(),

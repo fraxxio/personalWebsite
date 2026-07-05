@@ -20,8 +20,13 @@ const stack = [
 ];
 ---
 
-<!-- Add interactions and animations -->
-<Section id="about" surface>
+<Section id="about" surface class="relative isolate">
+  <div
+    data-about-grid
+    class="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(45,212,191,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(45,212,191,0.05)_1px,transparent_1px)] bg-size-[56px_56px] mask-[linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]"
+    aria-hidden="true"
+  >
+  </div>
   <Container>
     <div class="max-w-3xl" data-reveal>
       <Text as="span" variant="label" tone="muted">About me</Text>
@@ -29,7 +34,7 @@ const stack = [
     </div>
 
     <div class="mt-12 grid gap-5 md:grid-cols-[1.5fr_1fr]">
-      <Card class="flex flex-col md:row-span-2" data-reveal>
+      <Card class="glass-card flex flex-col md:row-span-2" data-reveal>
         <Text as="span" variant="label" tone="muted">Who am I?</Text>
         <p class="mt-5 text-xl leading-relaxed text-primary sm:text-2xl">
           A <span class="font-semibold">true engineer</span>, not a
@@ -81,7 +86,7 @@ const stack = [
         </div>
       </Card>
 
-      <Card data-reveal>
+      <Card class="glass-card" data-reveal>
         <div
           class="text-5xl font-semibold tracking-tight text-accent sm:text-6xl"
         >
@@ -92,7 +97,7 @@ const stack = [
         </Text>
       </Card>
 
-      <Card class="flex items-center gap-5" data-reveal>
+      <Card class="glass-card flex items-center gap-5" data-reveal>
         <div class="flex-none rounded-md border bg-white p-2">
           <img
             src="/VT.png"
@@ -111,3 +116,48 @@ const stack = [
     </div>
   </Container>
 </Section>
+
+<style is:global>
+  .about-cell-glow {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    animation: about-cell-glow 1.6s ease-out forwards;
+  }
+  @keyframes about-cell-glow {
+    0%,
+    65% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const section = document.getElementById("about");
+  const grid = section?.querySelector<HTMLElement>("[data-about-grid]");
+  const SIZE = 56;
+  const lit = new Set<string>();
+
+  section?.addEventListener("mousemove", (e) => {
+    if (!grid) return;
+    const rect = grid.getBoundingClientRect();
+    const x = Math.floor((e.clientX - rect.left) / SIZE);
+    const y = Math.floor((e.clientY - rect.top) / SIZE);
+    const key = `${x},${y}`;
+    if (lit.has(key)) return;
+    lit.add(key);
+    const cell = document.createElement("div");
+    cell.className = "about-cell-glow";
+    cell.style.left = `${x * SIZE + 1}px`;
+    cell.style.top = `${y * SIZE + 1}px`;
+    cell.addEventListener("animationend", () => {
+      cell.remove();
+      lit.delete(key);
+    });
+    grid.append(cell);
+  });
+</script>
