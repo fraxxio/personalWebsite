@@ -3,6 +3,7 @@
     description: Generate fake social media post screenshots with ease!
     tags: ["FrontEnd", "NextJS", "Tailwind", "Typescript", "Zod", "shadcn", "Uploadthing"]
     thumbnail: ./thumbnails/MockSocialThumbnail.png
+    secondaryThumbnail: ./thumbnails/MockSocialThumbnail2.png
     featured: false
     website: https://mocksocial.devrokas.com/
     github: https://github.com/fraxxio/MockSocial

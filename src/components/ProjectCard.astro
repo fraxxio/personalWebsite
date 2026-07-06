@@ -1,13 +1,13 @@
 ---
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
-import Badge from './ui/Badge.astro';
-import Button from './ui/Button.astro';
-import Icon from './ui/Icon.astro';
-import Text from './ui/Text.astro';
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import Badge from "./ui/Badge.astro";
+import Button from "./ui/Button.astro";
+import Icon from "./ui/Icon.astro";
+import Text from "./ui/Text.astro";
 
 interface Props {
-  project: CollectionEntry<'projects'>;
+  project: CollectionEntry<"projects">;
   index: number;
   total: number;
 }
@@ -17,56 +17,55 @@ const { title, description, tags, thumbnail, secondaryThumbnail, website, github
   project.data;
 const stackRotate =
   index % 2 === 0
-    ? 'group-hover:-translate-x-[4%] group-hover:-rotate-3'
-    : 'group-hover:translate-x-[4%] group-hover:rotate-3';
-const counter = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    ? "group-hover:-translate-x-[4%] group-hover:-rotate-3"
+    : "group-hover:translate-x-[4%] group-hover:rotate-3";
+const counter = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
 const href = `/projects/${project.id}`;
 
 const textLink =
-  'text-sm font-medium text-secondary underline-offset-4 transition duration-200 hover:text-primary hover:underline';
+  "text-sm font-medium text-secondary underline-offset-4 transition duration-200 hover:text-primary hover:underline";
 ---
 
-<article class='grid items-center gap-10 py-16 sm:py-24 md:grid-cols-2 md:gap-16' data-reveal>
-  <div class:list={[index % 2 === 1 && 'md:order-2']}>
-    <div class='flex items-center gap-3'>
-      <Text as='span' variant='label' tone='muted'>{counter}</Text>
+<article class="grid items-center gap-10 py-16 sm:py-24 md:grid-cols-2 md:gap-16" data-reveal>
+  <div class:list={[index % 2 === 1 && "md:order-2"]}>
+    <div class="flex items-center gap-3">
+      <Text as="span" variant="label" tone="muted">{counter}</Text>
       {featured && <Badge active>Featured</Badge>}
     </div>
-    <h3 class='mt-5 text-3xl font-semibold tracking-tight text-primary sm:text-4xl'>
-      <a href={href} class='transition duration-200 hover:text-accent'>{title}</a>
+    <h3 class="mt-5 text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
+      <a href={href} class="transition duration-200 hover:text-accent">{title}</a>
     </h3>
-    <div class='mt-5 flex flex-wrap gap-2'>
+    <div class="mt-5 flex flex-wrap gap-2">
       {tags.map((tag: string) => <Badge>{tag}</Badge>)}
     </div>
-    <Text class='mt-5 max-w-md'>{description}</Text>
-    <div class='mt-9 flex flex-wrap items-center gap-x-6 gap-y-4'>
+    <Text class="mt-5 max-w-md">{description}</Text>
+    <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
       <Button href={href}>
         Case study
-        <Icon name='arrow-right' />
+        <Icon name="arrow-right" />
       </Button>
       {
         website && (
-          <a href={website} target='_blank' rel='noopener noreferrer' class={textLink}>
+          <a href={website} target="_blank" rel="noopener noreferrer" class={textLink}>
             Live demo ↗
           </a>
         )
       }
-      <a href={github} target='_blank' rel='noopener noreferrer' class={textLink}>
-        Source ↗
-      </a>
+      <a href={github} target="_blank" rel="noopener noreferrer" class={textLink}> Source ↗ </a>
     </div>
   </div>
-  <a href={href} tabindex='-1' aria-hidden='true' class='group relative block'>
+  <a href={href} tabindex="-1" aria-hidden="true" class="group relative block">
     <div
-      class='overflow-hidden rounded-card border shadow-soft transition duration-300 group-hover:border-strong'
+      class="overflow-hidden rounded-card border shadow-soft transition duration-300 group-hover:border-strong"
     >
       <Image
         src={thumbnail}
-        alt=''
-        width={1100}
+        alt=""
+        width={1000}
+        height={500}
         class:list={[
-          'w-full object-cover',
-          !secondaryThumbnail && 'transition duration-500 ease-out group-hover:scale-[1.02]',
+          "w-full object-cover",
+          !secondaryThumbnail && "transition duration-500 ease-out group-hover:scale-[1.02]",
         ]}
       />
     </div>
@@ -74,15 +73,16 @@ const textLink =
       secondaryThumbnail && (
         <div
           class:list={[
-            'pointer-events-none absolute inset-0 -translate-y-8 scale-[1.06] opacity-0 transition-all duration-500 ease-out group-hover:translate-y-[6%] group-hover:scale-100 group-hover:opacity-100 motion-reduce:transition-none',
+            "pointer-events-none absolute inset-0 -translate-y-8 scale-[1.06] opacity-0 transition-all duration-500 ease-out group-hover:translate-y-[6%] group-hover:scale-100 group-hover:opacity-100 motion-reduce:transition-none",
             stackRotate,
           ]}
         >
           <Image
             src={secondaryThumbnail}
-            alt=''
-            width={1100}
-            class='w-full rounded-card border object-cover shadow-soft'
+            alt=""
+            width={1000}
+            height={500}
+            class="w-full rounded-card border object-cover shadow-soft"
           />
         </div>
       )

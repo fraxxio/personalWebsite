@@ -3,6 +3,7 @@
     description: Find new friends in an interactive way!
     tags: ["FullStack", "React", "Typescript", "Express", "Socket", "Tailwind", "Artillery", "Docker"]
     thumbnail: ./thumbnails/befriendlyThumbnail.png
+    secondaryThumbnail: ./thumbnails/beFriendlyThumbnail2.png
     featured: false
     github: https://github.com/fraxxio/beFriendly
     website: https://befriendly.devrokas.com/
