@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import GrainGradient from "./GrainGradient.astro";
 import Badge from "./ui/Badge.astro";
 import Button from "./ui/Button.astro";
+import Icon from "./ui/Icon.astro";
 import Text from "./ui/Text.astro";
 import heroIllustration from "../assets/HeroIllustration.png";
 ---
@@ -41,33 +42,11 @@ import heroIllustration from "../assets/HeroIllustration.png";
     <div class="fade-up mt-10 flex flex-wrap gap-4 w-full" style="--d: 240ms">
       <Button href="/#projects">
         View projects
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
-        >
+        <Icon name="arrow-right" />
       </Button>
       <Button href="/CV.pdf" download variant="secondary">
         Download CV
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline
-            points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg
-        >
+        <Icon name="download" />
       </Button>
     </div>
     <div

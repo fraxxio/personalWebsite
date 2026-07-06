@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Badge from './ui/Badge.astro';
 import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
 import Text from './ui/Text.astro';
 
 interface Props {
@@ -41,17 +42,7 @@ const textLink =
     <div class='mt-9 flex flex-wrap items-center gap-x-6 gap-y-4'>
       <Button href={href}>
         Case study
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          width='16'
-          height='16'
-          viewBox='0 0 24 24'
-          fill='none'
-          stroke='currentColor'
-          stroke-width='2'
-          stroke-linecap='round'
-          stroke-linejoin='round'><path d='M5 12h14'></path><path d='m12 5 7 7-7 7'></path></svg
-        >
+        <Icon name='arrow-right' />
       </Button>
       {
         website && (
