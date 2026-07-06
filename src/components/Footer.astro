@@ -1,3 +1,9 @@
-<footer class='mt-auto border-t border-subtle bg-background py-2 text-center text-sm text-muted'>
-  © {new Date().getFullYear()} dev.Rokas 
+---
+import Container from './ui/Container.astro';
+---
+
+<footer class='mt-auto border-t border-subtle bg-background py-2 text-sm text-muted'>
+  <Container class='text-center'>
+    © {new Date().getFullYear()} dev.Rokas
+  </Container>
 </footer>
